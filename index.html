@@ -121,14 +121,140 @@
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .hidden { display: none !important; }
-        .letter-content {
-            font-family: Calibri, Arial, sans-serif;
-            font-size: 12px;
-            line-height: 1.6;
+        
+        /* Offer Letter Styles */
+        .offer-letter {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            font-size: 11pt;
+            line-height: 1.5;
             color: #000;
-            padding: 40px;
+            width: 210mm;
+            height: 297mm;
+            padding: 20mm;
+            background: white;
+            margin: 0 auto;
+        }
+        
+        .offer-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20mm;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 15mm;
+            gap: 10mm;
+        }
+        
+        .offer-logo {
+            width: 50mm;
+            flex-shrink: 0;
+        }
+        
+        .offer-logo img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .offer-company-info {
+            flex: 1;
+        }
+        
+        .offer-company-name {
+            font-size: 13pt;
+            font-weight: bold;
+            margin-bottom: 2mm;
+            letter-spacing: 0.5px;
+        }
+        
+        .offer-company-subtitle {
+            font-size: 9pt;
+            font-weight: bold;
+            margin-bottom: 3mm;
+        }
+        
+        .offer-company-details {
+            font-size: 8pt;
+            line-height: 1.4;
+        }
+        
+        .offer-iso {
+            text-align: right;
+            font-size: 7pt;
+            margin-top: 3mm;
+        }
+        
+        .offer-to-section {
+            margin-bottom: 15mm;
+            font-size: 11pt;
+        }
+        
+        .offer-to-label {
+            margin-bottom: 3mm;
+        }
+        
+        .offer-recipient-name {
+            margin-bottom: 2mm;
+        }
+        
+        .offer-recipient-address {
+        }
+        
+        .offer-date-section {
+            text-align: right;
+            margin-bottom: 15mm;
+            font-size: 11pt;
+        }
+        
+        .offer-subject {
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 10mm;
+            font-size: 11pt;
+        }
+        
+        .offer-salutation {
+            margin-bottom: 8mm;
+            font-size: 11pt;
+        }
+        
+        .offer-body {
+            font-size: 11pt;
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 8mm;
+        }
+        
+        .offer-closing {
+            margin-top: 15mm;
+            font-size: 11pt;
+        }
+        
+        .offer-signature-block {
+            margin-top: 20mm;
+        }
+        
+        .offer-name {
+            margin-top: 5mm;
+        }
+        
+        .offer-designation {
+        }
+
+        /* Appointment Letter Styles */
+        .appointment-letter {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #000;
+            padding: 20mm;
             background: white;
         }
+        
+        .appt-to-section { margin-bottom: 15mm; }
+        .appt-subject { font-weight: bold; text-transform: uppercase; margin: 15px 0; text-decoration: underline; }
+        .appt-body { text-align: justify; margin: 10mm 0; line-height: 1.6; }
+        .appt-section { font-weight: bold; text-decoration: underline; margin: 15mm 0 8mm 0; }
+        .appt-item { margin: 8mm 0; text-align: justify; line-height: 1.6; }
+
         @media (max-width: 600px) {
             .header h1 { font-size: 24px; }
             .content { padding: 20px; }
@@ -154,7 +280,7 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Candidate Name *</label>
-                            <input type="text" id="candidateName" required>
+                            <input type="text" id="candidateName" required placeholder="e.g., Pankaj Kumar">
                         </div>
                         <div class="form-group">
                             <label>Email *</label>
@@ -168,7 +294,7 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Address *</label>
-                            <textarea id="address" required></textarea>
+                            <textarea id="address" required placeholder="e.g., Bypass road Shamli, Distt- Shamli, UP, 247776"></textarea>
                         </div>
                     </div>
                 </div>
@@ -177,11 +303,11 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Position *</label>
-                            <input type="text" id="position" required>
+                            <input type="text" id="position" required placeholder="e.g., MIS Executive">
                         </div>
                         <div class="form-group">
                             <label>Monthly Salary (Rs.) *</label>
-                            <input type="number" id="salary" required>
+                            <input type="number" id="salary" required placeholder="e.g., 18000">
                         </div>
                         <div class="form-group">
                             <label>Date of Joining *</label>
@@ -208,7 +334,7 @@
                 </div>
                 <div class="button-group">
                     <button type="submit" class="btn-primary">Generate Offer Letter</button>
-                    <button type="button" id="genAppt" class="btn-primary">Generate Appointment</button>
+                    <button type="button" id="genAppt" class="btn-primary">Generate Appointment Letter</button>
                     <button type="reset" class="btn-secondary">Clear</button>
                 </div>
             </form>
@@ -240,47 +366,131 @@
         }
 
         function createOfferLetter(d) {
-            return `<div class="letter-content">
-                <div style="text-align:center;margin-bottom:30px;">
-                    <div style="font-size:14px;font-weight:bold;">TAKKAR POLYCHEM PRIVATE LIMITED</div>
-                    <div style="font-size:9px;font-weight:bold;margin:5px 0;">(MANUFACTURERS OF SPECIALISED COMPOUNDS AND MASTER BATCHES)</div>
-                    <div style="font-size:8px;line-height:1.5;">PLOT NO 19, ECOTECH - XII, GREATER NOIDA - 201308 (UP)<br>CIN NO. - U25209DL2022PTC392480 TAN NO. - DELT20112B<br>PHONE: +91-8178526417, Email: info@takkarpolychem.com</div>
+            return `
+            <div class="offer-letter">
+                <div class="offer-header">
+                    <div class="offer-logo">
+                        <img src="https://takkarpolychem.com/assets/img/logo/takkar-polychem-logo.png" alt="Logo">
+                    </div>
+                    <div class="offer-company-info">
+                        <div class="offer-company-name">TAKKAR POLYCHEM PRIVATE LIMITED</div>
+                        <div class="offer-company-subtitle">(MANUFACTURERS OF SPECIALISED COMPOUNDS AND MASTER BATCHES)</div>
+                        <div class="offer-company-details">
+                            PLOT NO. 19, ECOTECH - XII, GREATER NOIDA - 201308 (UP)<br>
+                            CIN NO. - U25209DL2022PTC392480 TAN NO. - DELT20112B<br>
+                            PHONE: +91-8178526417, Email: info@takkarpolychem.com
+                        </div>
+                    </div>
+                    <div class="offer-iso">
+                        CE ROHS<br>
+                        <strong>AN ISO 9001:2015 CERTIFIED COMPANY</strong>
+                    </div>
                 </div>
-                <div style="margin-bottom:20px;">
-                    <div>To,</div>
-                    <div>Mr ${d.name},</div>
-                    <div>${d.address}</div>
+
+                <div class="offer-to-section">
+                    <div class="offer-to-label">To,</div>
+                    <div class="offer-recipient-name">Mr ${d.name},</div>
+                    <div class="offer-recipient-address">${d.address}</div>
                 </div>
-                <div style="text-align:right;margin-bottom:20px;">Dated: - ${formatDate(d.offerDate)}</div>
-                <div style="font-weight:bold;text-decoration:underline;margin-bottom:15px;">Subject: - Offer Letter for the post of ${d.position}</div>
-                <p>Dear ${d.name.split(' ')[0]},</p>
-                <p style="margin:15px 0;text-align:justify;">We are delighted to offer you the opportunity for the position of <b>${d.position}</b> with our Company <b>M/S Takkar Polychem Pvt Ltd</b>, Plot No 19, Ecotech XII, Greater Noida. This is a full-time role, and you will be reporting to <b>Mr. Amit Takkar (Director)</b>.</p>
-                <p style="margin:15px 0;text-align:justify;">Your expected starting date is <b>${formatDate(d.joiningDate)}</b>. You will be asked to sign a confidentiality and non-disclosure agreement at the beginning of your employment.</p>
-                <p style="margin:15px 0;text-align:justify;">We hope to offer you a challenging and rewarding career with a high level of job satisfaction and opportunities for career development.</p>
-                <p style="margin:15px 0;text-align:justify;">Please sign the duplicate copy of this letter as an acceptance of our offer for the position of <b>${d.position}</b>.</p>
-                <p style="margin:15px 0;text-align:justify;">We are all looking forward to your joining our team.</p>
-                <div style="margin-top:30px;">Best regards,<br><br>For Takkar Polychem Pvt Ltd.<br><br>Amit Takkar<br>(Director)</div>
-            </div>`;
+
+                <div class="offer-date-section">
+                    Dated: - ${formatDate(d.offerDate)}
+                </div>
+
+                <div class="offer-subject">Subject: - Offer Letter for the post of ${d.position}</div>
+
+                <div class="offer-salutation">Dear ${d.name.split(' ')[0]},</div>
+
+                <div class="offer-body">
+                    We are delighted to offer you the opportunity for the position of <b>${d.position}</b> with our Company <b>M/S Takkar Polychem Pvt Ltd</b>, Plot No 19, Ecotech XII, Greater Noida. This is a full-time role, and you will be reporting to <b>Mr. Amit Takkar (Director)</b>.
+                </div>
+
+                <div class="offer-body">
+                    Your expected starting date is <b>${formatDate(d.joiningDate)}</b>. You will be asked to sign a confidentiality and non-disclosure agreement at the beginning of your employment.
+                </div>
+
+                <div class="offer-body">
+                    We hope to offer you a challenging and rewarding career with a high level of job satisfaction and opportunities for career development.
+                </div>
+
+                <div class="offer-body">
+                    Please sign the duplicate copy of this letter as an acceptance of our offer for the position of <b>${d.position}</b>.
+                </div>
+
+                <div class="offer-body">
+                    We are all looking forward to your joining our team.
+                </div>
+
+                <div class="offer-closing">
+                    <div style="margin-bottom: 8mm;">Best regards,</div>
+                    <div style="margin-bottom: 20mm;">For Takkar Polychem Pvt Ltd.</div>
+                    <div class="offer-name">Amit Takkar</div>
+                    <div class="offer-designation">(Director)</div>
+                </div>
+            </div>
+            `;
         }
 
         function createAppointmentLetter(d) {
-            return `<div class="letter-content">
-                <div style="margin-bottom:20px;"><b>To,</b><br><b>Mr. ${d.name}</b><br>${d.address}<br>${d.phone}<br>${d.email}</div>
-                <div style="font-weight:bold;text-transform:uppercase;margin:15px 0;text-decoration:underline;">Subject: APPOINTMENT LETTER</div>
-                <p>Dear Madam,</p>
-                <p style="margin:15px 0;text-align:justify;">With reference to your application dated <b>${formatDate(d.appDate)}</b> and subsequent interview held on <b>${formatDate(d.intDate)}</b> we are pleased to offer you the post of <b>${d.position}</b> in our organization on the following terms and conditions.</p>
-                <p><b>Designation : ${d.position}</b><br><b>at Rs. ${d.salary} Per month</b><br><b>w.e.f ${formatDate(d.joiningDate)}</b></p>
-                <p style="margin:15px 0;text-align:justify;">The details of your remuneration are enumerated in Annexure A, enclosed. The payment of salary and benefits shall be subject to deduction of Income Tax as per the prevailing Income Tax rates and other statutory deductions, as may be required under the applicable Legislation in force from time to time. Your compensation will be renewed under the Company's policies from time to time, at the sole discretion of the Company.</p>
-                <div style="font-weight:bold;text-decoration:underline;margin:20px 0 10px 0;">PROBATION & CONFIRMATION</div>
-                <p style="margin:10px 0;"><b>1.</b> You will be on probation for the first 6 months of your employment. You will not be deemed to be confirmed until the letter of confirmation has been issued to you. During or at the expiry of the period of probation, your services are liable to be terminated at any time without notice or without assigning any reason or payment of compensation in lieu thereof.</p>
-                <p style="margin:10px 0;"><b>2.</b> After confirmation, your employment can be terminated/discharged by giving one month's notice in writing or one month's salary/wages in lieu thereof by either side. Further, in case of resignation, the management reserves the right to accept the same with immediate effect.</p>
-                <p style="margin:10px 0;"><b>3.</b> Your place of posting will, at present, be at <b>Greater Noida</b>. You are liable to be transferred/posted to any other establishment/branches of the company now in existence or that may come up in future.</p>
-                <p style="margin:10px 0;"><b>4.</b> Your shift timings start from 9:30 AM and end at 6:30 PM, from Monday to Saturday or as decided by the Management, and your reporting time will be 9.20 AM.</p>
-                <div style="font-weight:bold;text-decoration:underline;margin:20px 0 10px 0;">SALARY AND EMOLUMENTS</div>
-                <p style="margin:10px 0;"><b>10.</b> Your Annual compensation will be as per Annexure A, subject to TDS and other Govt and statutory deductions as applicable from time to time. During the tenure of service, you will keep your emoluments secret from other members of this organization.</p>
-                <div style="margin-top:50px;">Authorized Signatory<br><b>Amit Takkar</b><br>(Director)<br><b>TAKKAR POLYCHEM PVT. LTD.</b></div>
-                <div style="margin-top:50px;">(Signature of Employee)<br><b>Accepted: _____________</b></div>
-            </div>`;
+            return `
+            <div class="appointment-letter">
+                <div class="appt-to-section">
+                    <p><b>To,</b><br><b>Mr. ${d.name}</b><br>${d.address}<br>${d.phone}<br>${d.email}</p>
+                </div>
+
+                <div class="appt-subject">Subject: APPOINTMENT LETTER</div>
+
+                <div class="appt-body">
+                    With reference to your application dated <b>${formatDate(d.appDate)}</b> and subsequent interview held on <b>${formatDate(d.intDate)}</b> we are pleased to offer you the post of <b>${d.position}</b> in our organization on the following terms and conditions.
+                </div>
+
+                <p>
+                    <b>Designation : ${d.position}</b><br>
+                    <b>at Rs. ${d.salary} Per month</b><br>
+                    <b>w.e.f ${formatDate(d.joiningDate)}</b>
+                </p>
+
+                <div class="appt-body">
+                    The details of your remuneration are enumerated in Annexure A, enclosed. The payment of salary and benefits shall be subject to deduction of Income Tax as per the prevailing Income Tax rates and other statutory deductions, as may be required under the applicable Legislation in force from time to time. Your compensation will be renewed under the Company's policies from time to time, at the sole discretion of the Company.
+                </div>
+
+                <div class="appt-section">PROBATION & CONFIRMATION</div>
+
+                <div class="appt-item">
+                    <b>1.</b> You will be on probation for the first 6 months of your employment. You will not be deemed to be confirmed until the letter of confirmation has been issued to you. During or at the expiry of the period of probation, your services are liable to be terminated at any time without notice or without assigning any reason or payment of compensation in lieu thereof.
+                </div>
+
+                <div class="appt-item">
+                    <b>2.</b> After confirmation, your employment can be terminated/discharged by giving one month's notice in writing or one month's salary/wages in lieu thereof by either side. Further, in case of resignation, the management reserves the right to accept the same with immediate effect.
+                </div>
+
+                <div class="appt-item">
+                    <b>3.</b> Your place of posting will, at present, be at <b>Greater Noida</b>. You are liable to be transferred/posted to any other establishment/branches of the company now in existence or that may come up in future.
+                </div>
+
+                <div class="appt-item">
+                    <b>4.</b> Your shift timings start from 9:30 AM and end at 6:30 PM, from Monday to Saturday or as decided by the Management, and your reporting time will be 9.20 AM.
+                </div>
+
+                <div class="appt-section">SALARY AND EMOLUMENTS</div>
+
+                <div class="appt-item">
+                    <b>10.</b> Your Annual compensation will be as per Annexure A, subject to TDS and other Govt and statutory deductions as applicable from time to time. During the tenure of service, you will keep your emoluments secret from other members of this organization.
+                </div>
+
+                <div style="margin-top: 20mm;">
+                    Authorized Signatory<br>
+                    <b>Amit Takkar</b><br>
+                    (Director)<br>
+                    <b>TAKKAR POLYCHEM PVT. LTD.</b>
+                </div>
+
+                <div style="margin-top: 20mm;">
+                    (Signature of Employee)<br>
+                    <b>Accepted: _____________</b>
+                </div>
+            </div>
+            `;
         }
 
         async function makePDF(html, filename) {
@@ -300,20 +510,20 @@
                 const pdf = new jsPDF('p', 'mm', 'a4');
                 const pageWidth = pdf.internal.pageSize.getWidth();
                 const pageHeight = pdf.internal.pageSize.getHeight();
-                const imgWidth = pageWidth - 10;
+                const imgWidth = pageWidth;
                 const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-                let position = 5;
+                let position = 0;
                 let heightLeft = imgHeight;
 
-                pdf.addImage(imgData, 'PNG', 5, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight - 10;
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
 
                 while (heightLeft > 0) {
-                    position = heightLeft - imgHeight + 5;
+                    position = heightLeft - imgHeight;
                     pdf.addPage();
-                    pdf.addImage(imgData, 'PNG', 5, position, imgWidth, imgHeight);
-                    heightLeft -= pageHeight - 10;
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
                 }
 
                 pdf.save(filename + '.pdf');
@@ -346,7 +556,7 @@
 
         document.getElementById('genAppt').addEventListener('click', async function() {
             if (!document.getElementById('letterForm').checkValidity()) {
-                alert('Fill all fields!');
+                alert('Please fill all required fields!');
                 return;
             }
             const d = getData();
