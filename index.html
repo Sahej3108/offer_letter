@@ -204,15 +204,15 @@
         }
 
         /* Appointment Letter Styles */
-       .appointment-letter{
+      .appointment-letter{
     width:210mm;
     min-height:297mm;
     padding:18mm;
     background:white;
     box-sizing:border-box;
     font-family:Arial,sans-serif;
-    font-size:10pt;
-    line-height:1.5;
+    font-size:11pt;
+    line-height:1.6;
     color:#000;
 }
         
@@ -498,80 +498,455 @@
     </div>
     `;
 }
-        function createAppointmentLetter(d) {
-            return `
-            <div class="appt-header-image">
-    <img 
-        src="https://drive.google.com/uc?export=view&id=12nbtBC4MabKhhoT72iY37NWI83QjJxUS"
-        alt="Company Header"
-        style="
-            width:100%;
-            height:auto;
-            display:block;
-            margin-bottom:15px;
-        "
-    >
+       function createAppointmentLetter(d) {
+
+return `
+
+<div class="appointment-letter">
+
+    <div class="appt-header-image">
+        <img 
+            src="https://lh3.googleusercontent.com/d/12nbtBC4MabKhhoT72iY37NWI83QjJxUS"
+            alt="Company Header"
+            style="
+                width:100%;
+                height:auto;
+                display:block;
+                margin-bottom:15px;
+            "
+        >
+    </div>
+
+    <div style="font-size:11pt; line-height:1.7;">
+
+        <div style="margin-bottom:20px;">
+            <b>To,</b><br>
+            Mr. ${d.name}<br>
+            ${d.address}<br>
+            ${d.phone}<br>
+            ${d.email}
+        </div>
+
+        <div style="
+            font-weight:bold;
+            text-decoration:underline;
+            margin-bottom:25px;
+        ">
+            Subject: APPOINTMENT LETTER
+        </div>
+
+        <div style="margin-bottom:20px;">
+            Dear ${d.name.split(' ')[0]},
+        </div>
+
+        <div style="text-align:justify; margin-bottom:20px;">
+            With reference to your application dated 
+            <b>${formatDate(d.appDate)}</b> and subsequent interview held on 
+            <b>${formatDate(d.intDate)}</b> we are pleased to offer you the post of 
+            <b>${d.position}</b> in our organization on the following terms and conditions.
+        </div>
+
+        <div style="margin-left:40px; margin-bottom:25px; line-height:2;">
+            <b>Designation : ${d.position}</b><br>
+            <b>at Rs. ${d.salary} Per month</b><br>
+            <b>w.e.f ${formatDate(d.joiningDate)}</b>
+        </div>
+
+        <div style="text-align:justify; margin-bottom:20px;">
+            The details of your remuneration are enumerated in Annexure A, enclosed.
+            The payment of salary and benefits shall be subject to deduction of Income Tax
+            as per the prevailing Income Tax rates and other statutory deductions,
+            as may be required under the applicable legislation in force from time to time.
+            Your compensation will be renewed under the Company's policies from time to time,
+            at the sole discretion of the Company.
+        </div>
+
+        <div style="
+            font-weight:bold;
+            text-decoration:underline;
+            margin:25px 0 15px;
+        ">
+            PROBATION & CONFIRMATION
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>1.</b> You will be on probation for the first 6 months of your employment.
+            You will not be deemed to be confirmed until the letter of confirmation
+            has been issued to you.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>2.</b> After confirmation, your employment can be terminated/discharged
+            by giving one month's notice in writing or one month's salary/wages in lieu thereof
+            by either side.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>3.</b> Your place of posting will, at present, be at Greater Noida.
+            You are liable to be transferred/posted from your current branch
+            to any other establishment/branch/sister concerns of the company.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>4.</b> Your shift timings start from 9:30 AM and end at 6:30 PM,
+            from Monday to Saturday or as decided by the Management,
+            and your reporting time will be 9:20 AM.
+        </div>
+
+        <div style="
+            font-weight:bold;
+            text-decoration:underline;
+            margin:25px 0 15px;
+        ">
+            TERMINATION OF SERVICES
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>5.</b> Your services are liable to be terminated without any notice
+            if any information tendered by you in your application is found to be false,
+            misleading or facts have been omitted.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>6.</b> Continued absence from duty for 8 days without permission
+            shall tantamount to voluntary abandonment of service.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>7.</b> In the event of your becoming unfit for performance of your normal duties
+            due to illness, accident or medical reasons,
+            your services may be discharged.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>8.</b> Your services can be terminated by the Company without notice
+            in case of dishonesty, misconduct, insubordination,
+            absenteeism or violation of company policies.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>9.</b> In the event of your committing any act of misconduct,
+            you can be suspended from the services of the organization.
+        </div>
+
+        <div style="
+            font-weight:bold;
+            text-decoration:underline;
+            margin:25px 0 15px;
+        ">
+            SALARY AND EMOLUMENTS
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>10.</b> Your Annual compensation will be as per Annexure A,
+            subject to TDS and other statutory deductions applicable from time to time.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>11.</b> Your salary will be directly credited to your salary account.
+            Salary information must remain confidential.
+        </div>
+
+        <div style="
+            font-weight:bold;
+            text-decoration:underline;
+            margin:25px 0 15px;
+        ">
+            SECRECY & NON-SOLICITATION
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>12.</b> You shall not reveal/disclose/disseminate any confidential information,
+            business data, company processes, customer information,
+            or trade secrets during or after employment.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>13.</b> You shall not directly or indirectly solicit company employees,
+            customers or vendors during your employment and for one year thereafter.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>14.</b> You shall not engage in competing business activities
+            during your employment with the company.
+        </div>
+
+        <div style="
+            font-weight:bold;
+            text-decoration:underline;
+            margin:25px 0 15px;
+        ">
+            GENERAL RULES & REGULATIONS
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>15.</b> As an ${d.position}, you are expected to uphold accuracy,
+            confidentiality and integrity in managing company data and reports.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>16.</b> Any misconduct, misrepresentation or violation of company policy
+            may result in disciplinary action.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>17.</b> You will be entitled to statutory and service benefits
+            according to company policies and government rules.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>18.</b> You shall report to the authority designated by the company
+            and perform responsibilities assigned from time to time.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>19.</b> You will be entitled to leave and holidays
+            as per company policies and statutory regulations.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>20.</b> You shall be governed by the Rules & Regulations,
+            Standing Orders and company instructions issued from time to time.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>21.</b> Unapproved absences shall be treated as Leave Without Pay.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>22.</b> You shall not resort to strike or go-slow tactics
+            without proper notice to the management.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>23.</b> Any losses caused due to work slowdown or negligence
+            shall be recoverable from you.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>24.</b> Refusal to accept official company communication
+            shall constitute misconduct.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>25.</b> You shall be a whole-time employee of the company
+            and shall not engage in any other employment.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>26.</b> You shall keep the company informed of any change
+            in residential address or contact details.
+        </div>
+
+        <div style="
+            font-weight:bold;
+            text-decoration:underline;
+            margin:25px 0 15px;
+        ">
+            ASSET POLICY
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>27.</b> All company assets must be returned during termination/resignation.
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>28.</b> You shall be responsible for safeguarding all company property
+            in your possession.
+        </div>
+
+        <div style="
+            font-weight:bold;
+            text-decoration:underline;
+            margin:25px 0 15px;
+        ">
+            POSH POLICY
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>29.</b> The company is committed to providing a safe
+            and respectful work environment free from sexual harassment and discrimination.
+        </div>
+
+        <div style="
+            font-weight:bold;
+            text-decoration:underline;
+            margin:25px 0 15px;
+        ">
+            RETIREMENT
+        </div>
+
+        <div style="margin-bottom:15px; text-align:justify;">
+            <b>30.</b> You will retire from the service of the company
+            upon attaining the age of 58 years.
+        </div>
+
+        <div style="
+            font-weight:bold;
+            text-decoration:underline;
+            margin:25px 0 15px;
+        ">
+            DISPUTE SETTLEMENT
+        </div>
+
+        <div style="margin-bottom:20px; text-align:justify;">
+            <b>31.</b> All disputes arising in connection with this Appointment Letter
+            shall be settled through arbitration in accordance with applicable laws.
+        </div>
+
+        <div style="margin-bottom:20px; text-align:justify;">
+            Please sign and return the duplicate copy of this letter
+            along with your educational documents and certificates.
+        </div>
+
+        <div style="margin-bottom:20px;">
+            We welcome you to this organization and trust we will have
+            a long and mutually beneficial association.
+        </div>
+
+        <div style="margin-bottom:40px;">
+            Hope that this will be the beginning of a long and successful career with us.
+        </div>
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            margin-top:70px;
+        ">
+
+            <div>
+                Authorized Signatory<br><br>
+                <b>${d.reportingTo}</b><br>
+                Director<br>
+                <b>TAKKAR POLYCHEM PVT. LTD.</b>
+            </div>
+
+            <div>
+                Signature of Employee<br><br>
+                Accepted: __________
+            </div>
+
+        </div>
+
+        <div style="
+            margin-top:70px;
+            border-top:1px solid #ccc;
+            padding-top:20px;
+        ">
+
+            <div style="
+                font-weight:bold;
+                margin-bottom:20px;
+            ">
+                DECLARATION
+            </div>
+
+            <div style="
+                text-align:justify;
+                margin-bottom:40px;
+            ">
+                I have carefully read and understood the above terms and conditions
+                contained in this Appointment Letter and confirm acceptance
+                without any reservations.
+            </div>
+
+            <div>
+                Signature ....................................................
+            </div>
+
+            <div style="margin-top:15px;">
+                Date ..........................................................
+            </div>
+
+        </div>
+
+        <div style="
+            page-break-before:always;
+            margin-top:80px;
+        ">
+
+            <div style="
+                text-align:center;
+                font-weight:bold;
+                text-decoration:underline;
+                margin-bottom:30px;
+                font-size:16px;
+            ">
+                ANNEXURE 'B'
+            </div>
+
+            <div style="
+                margin-bottom:25px;
+                text-align:justify;
+            ">
+                As part of the MIS (Management Information Systems) Team
+                at TAKKAR POLYCHEM PVT. LTD.,
+                your roles and responsibilities shall include:
+            </div>
+
+            <div style="line-height:2;">
+
+                <b>1. Data Management and Reporting</b><br>
+                Managing and maintaining data from departments including Sales,
+                Production, Dispatch, CRM and Accounts.
+
+                <br><br>
+
+                <b>2. Dashboard Creation and Maintenance</b><br>
+                Designing and updating real-time dashboards using Google Sheets,
+                Excel or MIS tools.
+
+                <br><br>
+
+                <b>3. Automation of Reports and Workflows</b><br>
+                Automating repetitive tasks using formulas, scripts and integrations.
+
+                <br><br>
+
+                <b>4. Master Data Maintenance</b><br>
+                Creating and managing master databases across systems.
+
+                <br><br>
+
+                <b>5. Error Checking and Data Accuracy</b><br>
+                Reviewing reports for discrepancies and inconsistencies.
+
+                <br><br>
+
+                <b>6. Support for Departmental Analysis</b><br>
+                Assisting Sales, Production and Accounts teams with reporting.
+
+                <br><br>
+
+                <b>7. Compliance and Documentation</b><br>
+                Maintaining version control and backup protocols.
+
+                <br><br>
+
+                <b>8. Process Mapping and Efficiency Monitoring</b><br>
+                Monitoring business processes and performance KPIs.
+
+                <br><br>
+
+                <b>9. Interdepartmental Coordination</b><br>
+                Ensuring smooth data flow between departments.
+
+                <br><br>
+
+                <b>10. Training and Support</b><br>
+                Providing training to team members on reports and dashboards.
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
-                <div class="appt-to-section">
-                    <p><b>To,</b><br><b>Mr. ${d.name}</b><br>${d.address}<br>${d.phone}<br>${d.email}</p>
-                </div>
+`;
 
-                <div class="appt-subject">Subject: APPOINTMENT LETTER</div>
-
-                <div class="appt-body">
-                    With reference to your application dated <b>${formatDate(d.appDate)}</b> and subsequent interview held on <b>${formatDate(d.intDate)}</b> we are pleased to offer you the post of <b>${d.position}</b> in our organization on the following terms and conditions.
-                </div>
-
-                <p style="font-size: 10pt; margin: 0.08in 0;">
-                    <b>Designation : ${d.position}</b><br>
-                    <b>at Rs. ${d.salary} Per month</b><br>
-                    <b>w.e.f ${formatDate(d.joiningDate)}</b>
-                </p>
-
-                <div class="appt-body">
-                    The details of your remuneration are enumerated in Annexure A, enclosed. The payment of salary and benefits shall be subject to deduction of Income Tax as per the prevailing Income Tax rates and other statutory deductions, as may be required under the applicable Legislation in force from time to time. Your compensation will be renewed under the Company's policies from time to time, at the sole discretion of the Company.
-                </div>
-
-                <div class="appt-section">PROBATION & CONFIRMATION</div>
-
-                <div class="appt-item">
-                    <b>1.</b> You will be on probation for the first 6 months of your employment. You will not be deemed to be confirmed until the letter of confirmation has been issued to you. During or at the expiry of the period of probation, your services are liable to be terminated at any time without notice or without assigning any reason or payment of compensation in lieu thereof.
-                </div>
-
-                <div class="appt-item">
-                    <b>2.</b> After confirmation, your employment can be terminated/discharged by giving one month's notice in writing or one month's salary/wages in lieu thereof by either side. Further, in case of resignation, the management reserves the right to accept the same with immediate effect.
-                </div>
-
-                <div class="appt-item">
-                    <b>3.</b> Your place of posting will, at present, be at <b>Greater Noida</b>. You are liable to be transferred/posted to any other establishment/branches of the company now in existence or that may come up in future.
-                </div>
-
-                <div class="appt-item">
-                    <b>4.</b> Your shift timings start from 9:30 AM and end at 6:30 PM, from Monday to Saturday or as decided by the Management, and your reporting time will be 9.20 AM.
-                </div>
-
-                <div class="appt-section">SALARY AND EMOLUMENTS</div>
-
-                <div class="appt-item">
-                    <b>10.</b> Your Annual compensation will be as per Annexure A, subject to TDS and other Govt and statutory deductions as applicable from time to time. During the tenure of service, you will keep your emoluments secret from other members of this organization.
-                </div>
-
-                <div style="margin-top: 0.3in; font-size: 10pt;">
-                    Authorized Signatory<br>
-                    <b>${d.reportingTo}</b><br>
-                    (Director)<br>
-                    <b>TAKKAR POLYCHEM PVT. LTD.</b>
-                </div>
-
-                <div style="margin-top: 0.3in; font-size: 10pt;">
-                    (Signature of Employee)<br>
-                    <b>Accepted: _____________</b>
-                </div>
-            </div>
-            `;
-        }
-
+}
         async function makePDF(html, filename) {
             try {
                 const container = document.getElementById('letterContent');
