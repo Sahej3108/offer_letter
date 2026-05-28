@@ -204,14 +204,17 @@
         }
 
         /* Appointment Letter Styles */
-        .appointment-letter {
-            font-family: 'Arial', sans-serif;
-            font-size: 10pt;
-            line-height: 1.4;
-            color: #000;
-            padding: 0.5in;
-            background: white;
-        }
+       .appointment-letter{
+    width:210mm;
+    min-height:297mm;
+    padding:18mm;
+    background:white;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+    font-size:10pt;
+    line-height:1.5;
+    color:#000;
+}
         
         .appt-header-image {
             width: 100%;
@@ -497,10 +500,18 @@
 }
         function createAppointmentLetter(d) {
             return `
-            <div class="appointment-letter">
-                <div class="appt-header-image">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Header" style="width: 100%; height: auto;">
-                </div>
+            <div class="appt-header-image">
+    <img 
+        src="https://drive.google.com/uc?export=view&id=12nbtBC4MabKhhoT72iY37NWI83QjJxUS"
+        alt="Company Header"
+        style="
+            width:100%;
+            height:auto;
+            display:block;
+            margin-bottom:15px;
+        "
+    >
+</div>
 
                 <div class="appt-to-section">
                     <p><b>To,</b><br><b>Mr. ${d.name}</b><br>${d.address}<br>${d.phone}<br>${d.email}</p>
@@ -567,7 +578,7 @@
                 container.innerHTML = html;
                 container.classList.remove('hidden');
                 
-                const canvas = await html2canvas(container, {
+                const canvas = await html2canvas(container.firstElementChild, {
                     scale: 2,
                     useCORS: true,
                     allowTaint: true,
