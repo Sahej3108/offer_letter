@@ -348,60 +348,153 @@
         }
 
         function createOfferLetter(d) {
-            return `
-            <div class="offer-letter" style="position: relative;">
-                <div class="offer-header-image">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Header" style="width: 100%; height: auto;">
+    return `
+    <div class="offer-letter" 
+        style="
+            width:210mm;
+            min-height:297mm;
+            background:white;
+            padding:0 18mm 18mm 18mm;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+            color:#000;
+            line-height:1.7;
+        ">
+
+        <div class="offer-header-image">
+            <img 
+                src="https://drive.google.com/uc?export=view&id=12nbtBC4MabKhhoT72iY37NWI83QjJxUS"
+                alt="Company Header"
+                style="
+                    width:100%;
+                    height:auto;
+                    display:block;
+                    margin-bottom:20px;
+                "
+            >
+        </div>
+
+        <div style="margin-top:10px;">
+
+            <div style="margin-bottom:25px;">
+                <div style="font-weight:bold;">To,</div>
+
+                <div style="margin-top:8px;font-weight:bold;">
+                    Mr ${d.name},
                 </div>
 
-                <div class="offer-body-wrapper">
-                    <div class="offer-to-section">
-                        <div class="offer-to-label">To,</div>
-                        <div class="offer-recipient-name">Mr ${d.name},</div>
-                        <div class="offer-recipient-address">${d.address}</div>
-                    </div>
-
-                    <div class="offer-date-section">
-                        Dated: - ${formatDate(d.offerDate)}
-                    </div>
-
-                    <div class="offer-subject">Subject: - Offer Letter for the post of ${d.position}</div>
-
-                    <div class="offer-salutation">Dear ${d.name.split(' ')[0]},</div>
-
-                    <div class="offer-body">
-                        We are delighted to offer you the opportunity for the position of <b>${d.position}</b> with our Company <b>M/S Takkar Polychem Pvt Ltd</b>, Plot No 19, Ecotech XII, Greater Noida. This is a full-time role, and you will be reporting to <b>Mr. ${d.reportingTo}</b>.
-                    </div>
-
-                    <div class="offer-body">
-                        Your expected starting date is <b>${formatDate(d.joiningDate)}</b>. You will be asked to sign a confidentiality and non-disclosure agreement at the beginning of your employment.
-                    </div>
-
-                    <div class="offer-body">
-                        We hope to offer you a challenging and rewarding career with a high level of job satisfaction and opportunities for career development.
-                    </div>
-
-                    <div class="offer-body">
-                        Please sign the duplicate copy of this letter as an acceptance of our offer for the position of <b>${d.position}</b>.
-                    </div>
-
-                    <div class="offer-body">
-                        We are all looking forward to your joining our team.
-                    </div>
-
-                    <div class="offer-closing">
-                        <div style="margin-bottom: 0.15in;">Best regards,</div>
-                        <div style="margin-bottom: 0.35in;">For Takkar Polychem Pvt Ltd.</div>
-                        <div class="offer-signature-block">
-                            <div>${d.reportingTo}</div>
-                            <div>(Director)</div>
-                        </div>
-                    </div>
+                <div style="margin-top:5px;white-space:pre-line;">
+                    ${d.address}
                 </div>
             </div>
-            `;
-        }
 
+            <div style="
+                text-align:right;
+                margin-bottom:25px;
+                font-weight:bold;
+            ">
+                Dated: ${formatDate(d.offerDate)}
+            </div>
+
+            <div style="
+                font-size:15px;
+                font-weight:bold;
+                margin-bottom:25px;
+                text-decoration:underline;
+            ">
+                Subject: Offer Letter for the post of ${d.position}
+            </div>
+
+            <div style="
+                margin-bottom:20px;
+                font-weight:bold;
+            ">
+                Dear ${d.name.split(' ')[0]},
+            </div>
+
+            <div style="
+                margin-bottom:18px;
+                text-align:justify;
+                font-size:14px;
+            ">
+                We are delighted to offer you the opportunity for the position of 
+                <b>${d.position}</b> with our company 
+                <b>M/S Takkar Polychem Pvt Ltd</b>, 
+                Plot No 19, Ecotech XII, Greater Noida. 
+                This is a full-time role and you will be reporting to 
+                <b>Mr. ${d.reportingTo}</b>.
+            </div>
+
+            <div style="
+                margin-bottom:18px;
+                text-align:justify;
+                font-size:14px;
+            ">
+                Your expected starting date is 
+                <b>${formatDate(d.joiningDate)}</b>. 
+                Your monthly salary will be 
+                <b>₹${d.salary}</b>.
+            </div>
+
+            <div style="
+                margin-bottom:18px;
+                text-align:justify;
+                font-size:14px;
+            ">
+                You will be required to maintain confidentiality regarding company operations, 
+                client information, and internal processes during and after your employment.
+            </div>
+
+            <div style="
+                margin-bottom:18px;
+                text-align:justify;
+                font-size:14px;
+            ">
+                We hope to offer you a challenging and rewarding career with opportunities 
+                for growth and professional development.
+            </div>
+
+            <div style="
+                margin-bottom:18px;
+                text-align:justify;
+                font-size:14px;
+            ">
+                Please sign and return the duplicate copy of this letter as an acceptance 
+                of our offer for the position of <b>${d.position}</b>.
+            </div>
+
+            <div style="
+                margin-bottom:18px;
+                text-align:justify;
+                font-size:14px;
+            ">
+                We are all looking forward to your joining our team.
+            </div>
+
+            <div style="
+                margin-top:55px;
+            ">
+
+                <div style="margin-bottom:10px;">
+                    Best Regards,
+                </div>
+
+                <div style="margin-bottom:60px;">
+                    For Takkar Polychem Pvt Ltd.
+                </div>
+
+                <div style="font-weight:bold;">
+                    <div>${d.reportingTo}</div>
+                    <div>(Director)</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    `;
+}
         function createAppointmentLetter(d) {
             return `
             <div class="appointment-letter">
