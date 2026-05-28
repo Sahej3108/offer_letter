@@ -98,16 +98,12 @@ function generateOfferLetter(data) {
     </head>
     <body>
         <div class="header-section">
-            <img src="https://takkarpolychem.com/assets/img/logo/takkar-polychem-logo.png" class="logo" alt="Logo">
             <div class="company-name">TAKKAR POLYCHEM PRIVATE LIMITED</div>
             <div class="company-subtitle">(MANUFACTURERS OF SPECIALISED COMPOUNDS AND MASTER BATCHES)</div>
             <div class="company-details">
                 PLOT NO 19, ECOTECH - XII, GREATER NOIDA - 201308 (UP)<br>
                 CIN NO. - U25209DL2022PTC392480 TAN NO. - DELT20112B<br>
                 PHONE: +91-8178526417, Email: info@takkarpolychem.com
-            </div>
-            <div class="certifications">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='20'%3E%3Ctext x='5' y='15' font-size='10'%3EAN ISO 9001:2015 CERTIFIED COMPANY%3C/text%3E%3C/svg%3E" alt="ISO Certified">
             </div>
         </div>
 
@@ -516,83 +512,117 @@ function generateAppointmentLetter(data) {
     return html;
 }
 
-// Download PDF
-async function downloadPDF(html, filename) {
-    const element = document.createElement('div');
-    element.innerHTML = html;
-    document.body.appendChild(element);
-
-    const opt = {
-        margin: 0,
-        filename: filename,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-
+// Download PDF using html2pdf
+function downloadPDF(html, filename) {
     try {
-        await html2pdf().set(opt).from(element).save();
+        console.log('Creating element for PDF:', filename);
+        
+        const element = document.createElement('div');
+        element.innerHTML = html;
+        element.style.position = 'absolute';
+        element.style.left = '-9999px';
+        element.style.width = '210mm'; // A4 width
+        
+        document.body.appendChild(element);
+        
+        const opt = {
+            margin: [10, 10, 10, 10],
+            filename: filename,
+            image: { type: 'jpeg', quality: 0.95 },
+            html2canvas: { scale: 2, logging: false, allowTaint: true, useCORS: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true }
+        };
+        
+        console.log('Starting html2pdf with options:', opt);
+        
+        return html2pdf().set(opt).from(element).save().then(() => {
+            console.log('PDF saved successfully:', filename);
+            if (document.body.contains(element)) {
+                document.body.removeChild(element);
+            }
+        }).catch(error => {
+            console.error('html2pdf error:', error);
+            if (document.body.contains(element)) {
+                document.body.removeChild(element);
+            }
+            throw error;
+        });
+        
     } catch (error) {
-        console.error('Error generating PDF:', error);
-        alert('Error generating PDF. Please try again.');
-    } finally {
-        document.body.removeChild(element);
+        console.error('Error in downloadPDF:', error);
+        throw error;
     }
 }
 
 // Handle form submission
-document.getElementById('letterForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('letterForm');
+    if (!form) {
+        console.error('Form not found!');
+        return;
+    }
+    
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-    const loading = document.getElementById('loading');
-    const successMessage = document.getElementById('successMessage');
+        console.log('Form submitted!');
 
-    // Get form data
-    const data = {
-        candidateName: document.getElementById('candidateName').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        address: document.getElementById('address').value,
-        position: document.getElementById('position').value,
-        salary: document.getElementById('salary').value,
-        joiningDate: document.getElementById('joiningDate').value,
-        offerLetterDate: document.getElementById('offerLetterDate').value,
-        applicationDate: document.getElementById('applicationDate').value,
-        interviewDate: document.getElementById('interviewDate').value
-    };
+        const loading = document.getElementById('loading');
+        const successMessage = document.getElementById('successMessage');
 
-    // Show loading
-    loading.classList.add('show');
-    successMessage.classList.remove('show');
+        // Check if html2pdf is loaded
+        if (typeof html2pdf === 'undefined') {
+            alert('Error: PDF library not loaded. Please refresh the page and try again.');
+            console.error('html2pdf is not defined');
+            return;
+        }
 
-    // Small delay to show loading state
-    setTimeout(async () => {
+        // Get form data
+        const data = {
+            candidateName: document.getElementById('candidateName').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value,
+            position: document.getElementById('position').value,
+            salary: document.getElementById('salary').value,
+            joiningDate: document.getElementById('joiningDate').value,
+            offerLetterDate: document.getElementById('offerLetterDate').value,
+            applicationDate: document.getElementById('applicationDate').value,
+            interviewDate: document.getElementById('interviewDate').value
+        };
+
+        console.log('Form data:', data);
+
+        // Show loading
+        loading.classList.add('show');
+        successMessage.classList.remove('show');
+
         try {
-            // Generate Offer Letter
+            console.log('Generating Offer Letter...');
             const offerLetterHTML = generateOfferLetter(data);
             await downloadPDF(offerLetterHTML, `${data.candidateName}_Offer_Letter.pdf`);
 
-            // Small delay between downloads
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            console.log('Waiting 2 seconds before Appointment Letter...');
+            await new Promise(resolve => setTimeout(resolve, 2000));
 
-            // Generate Appointment Letter
+            console.log('Generating Appointment Letter...');
             const appointmentLetterHTML = generateAppointmentLetter(data);
             await downloadPDF(appointmentLetterHTML, `${data.candidateName}_Appointment_Letter.pdf`);
 
-            // Show success message
+            console.log('Both PDFs generated successfully!');
+            
             loading.classList.remove('show');
             successMessage.textContent = `✓ Successfully generated both letters for ${data.candidateName}!`;
             successMessage.classList.add('show');
 
-            // Auto-hide success message after 5 seconds
             setTimeout(() => {
                 successMessage.classList.remove('show');
             }, 5000);
 
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error generating letters:', error);
             loading.classList.remove('show');
-            alert('Error generating letters. Please try again.');
+            alert('Error: ' + error.message + '\n\nPlease check your browser console (F12) for details.');
         }
-    }, 500);
+    });
 });
