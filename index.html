@@ -366,7 +366,7 @@
 
         <div class="offer-header-image">
             <img 
-                src="https://drive.google.com/uc?export=view&id=12nbtBC4MabKhhoT72iY37NWI83QjJxUS"
+                src="https://lh3.googleusercontent.com/d/12nbtBC4MabKhhoT72iY37NWI83QjJxUS"
                 alt="Company Header"
                 style="
                     width:100%;
@@ -579,11 +579,12 @@
                 container.classList.remove('hidden');
                 
                 const canvas = await html2canvas(container.firstElementChild, {
-                    scale: 2,
-                    useCORS: true,
-                    allowTaint: true,
-                    backgroundColor: '#ffffff'
-                });
+    scale: 2,
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: '#ffffff',
+    imageTimeout: 0
+});
 
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF('p', 'mm', 'a4');
