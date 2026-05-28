@@ -124,136 +124,113 @@
         
         /* Offer Letter Styles */
         .offer-letter {
-            font-family: 'Calibri', 'Arial', sans-serif;
-            font-size: 11pt;
-            line-height: 1.5;
+            font-family: 'Arial', sans-serif;
+            font-size: 10pt;
+            line-height: 1.4;
             color: #000;
-            width: 210mm;
-            height: 297mm;
-            padding: 20mm;
+            width: 8.5in;
+            height: 11in;
+            padding: 0.5in;
             background: white;
             margin: 0 auto;
         }
         
-        .offer-header {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20mm;
+        .offer-header-image {
+            width: 100%;
+            margin-bottom: 0.3in;
             border-bottom: 1px solid #ccc;
-            padding-bottom: 15mm;
-            gap: 10mm;
+            padding-bottom: 0.15in;
         }
         
-        .offer-logo {
-            width: 50mm;
-            flex-shrink: 0;
-        }
-        
-        .offer-logo img {
+        .offer-header-image img {
             width: 100%;
             height: auto;
+            max-height: 0.8in;
         }
-        
-        .offer-company-info {
-            flex: 1;
-        }
-        
-        .offer-company-name {
-            font-size: 13pt;
-            font-weight: bold;
-            margin-bottom: 2mm;
-            letter-spacing: 0.5px;
-        }
-        
-        .offer-company-subtitle {
-            font-size: 9pt;
-            font-weight: bold;
-            margin-bottom: 3mm;
-        }
-        
-        .offer-company-details {
-            font-size: 8pt;
-            line-height: 1.4;
-        }
-        
-        .offer-iso {
-            text-align: right;
-            font-size: 7pt;
-            margin-top: 3mm;
+
+        .offer-body-wrapper {
+            margin-top: 0.2in;
         }
         
         .offer-to-section {
-            margin-bottom: 15mm;
-            font-size: 11pt;
+            margin-bottom: 0.2in;
+            font-size: 10pt;
+            line-height: 1.4;
         }
         
         .offer-to-label {
-            margin-bottom: 3mm;
+            margin-bottom: 2pt;
         }
         
         .offer-recipient-name {
-            margin-bottom: 2mm;
-        }
-        
-        .offer-recipient-address {
+            margin-bottom: 2pt;
         }
         
         .offer-date-section {
             text-align: right;
-            margin-bottom: 15mm;
-            font-size: 11pt;
+            margin-bottom: 0.2in;
+            font-size: 10pt;
+            position: absolute;
+            right: 0.5in;
+            top: 1.8in;
         }
         
         .offer-subject {
             font-weight: bold;
             text-decoration: underline;
-            margin-bottom: 10mm;
-            font-size: 11pt;
+            margin-bottom: 0.15in;
+            font-size: 10pt;
         }
         
         .offer-salutation {
-            margin-bottom: 8mm;
-            font-size: 11pt;
+            margin-bottom: 0.1in;
+            font-size: 10pt;
         }
         
         .offer-body {
-            font-size: 11pt;
-            line-height: 1.6;
+            font-size: 10pt;
+            line-height: 1.5;
             text-align: justify;
-            margin-bottom: 8mm;
+            margin-bottom: 0.1in;
         }
         
         .offer-closing {
-            margin-top: 15mm;
-            font-size: 11pt;
+            margin-top: 0.25in;
+            font-size: 10pt;
         }
         
         .offer-signature-block {
-            margin-top: 20mm;
-        }
-        
-        .offer-name {
-            margin-top: 5mm;
-        }
-        
-        .offer-designation {
+            margin-top: 0.3in;
         }
 
         /* Appointment Letter Styles */
         .appointment-letter {
-            font-family: 'Calibri', 'Arial', sans-serif;
-            font-size: 11pt;
-            line-height: 1.5;
+            font-family: 'Arial', sans-serif;
+            font-size: 10pt;
+            line-height: 1.4;
             color: #000;
-            padding: 20mm;
+            padding: 0.5in;
             background: white;
         }
         
-        .appt-to-section { margin-bottom: 15mm; }
-        .appt-subject { font-weight: bold; text-transform: uppercase; margin: 15px 0; text-decoration: underline; }
-        .appt-body { text-align: justify; margin: 10mm 0; line-height: 1.6; }
-        .appt-section { font-weight: bold; text-decoration: underline; margin: 15mm 0 8mm 0; }
-        .appt-item { margin: 8mm 0; text-align: justify; line-height: 1.6; }
+        .appt-header-image {
+            width: 100%;
+            margin-bottom: 0.3in;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 0.15in;
+        }
+        
+        .appt-header-image img {
+            width: 100%;
+            height: auto;
+            max-height: 0.8in;
+        }
+        
+        .appt-to-section { margin-bottom: 0.15in; font-size: 10pt; }
+        .appt-subject { font-weight: bold; text-transform: uppercase; margin: 0.1in 0; text-decoration: underline; }
+        .appt-body { text-align: justify; margin: 0.1in 0; line-height: 1.5; font-size: 10pt; }
+        .appt-section { font-weight: bold; text-decoration: underline; margin: 0.15in 0 0.08in 0; font-size: 10pt; }
+        .appt-item { margin: 0.08in 0; text-align: justify; line-height: 1.5; font-size: 10pt; }
 
         @media (max-width: 600px) {
             .header h1 { font-size: 24px; }
@@ -304,6 +281,10 @@
                         <div class="form-group">
                             <label>Position *</label>
                             <input type="text" id="position" required placeholder="e.g., MIS Executive">
+                        </div>
+                        <div class="form-group">
+                            <label>Reporting To *</label>
+                            <input type="text" id="reportingTo" required placeholder="e.g., Amit Takkar">
                         </div>
                         <div class="form-group">
                             <label>Monthly Salary (Rs.) *</label>
@@ -357,6 +338,7 @@
                 phone: document.getElementById('phone').value,
                 address: document.getElementById('address').value,
                 position: document.getElementById('position').value,
+                reportingTo: document.getElementById('reportingTo').value,
                 salary: document.getElementById('salary').value,
                 joiningDate: document.getElementById('joiningDate').value,
                 offerDate: document.getElementById('offerLetterDate').value,
@@ -367,65 +349,54 @@
 
         function createOfferLetter(d) {
             return `
-            <div class="offer-letter">
-                <div class="offer-header">
-                    <div class="offer-logo">
-                        <img src="https://takkarpolychem.com/assets/img/logo/takkar-polychem-logo.png" alt="Logo">
+            <div class="offer-letter" style="position: relative;">
+                <div class="offer-header-image">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Header" style="width: 100%; height: auto;">
+                </div>
+
+                <div class="offer-body-wrapper">
+                    <div class="offer-to-section">
+                        <div class="offer-to-label">To,</div>
+                        <div class="offer-recipient-name">Mr ${d.name},</div>
+                        <div class="offer-recipient-address">${d.address}</div>
                     </div>
-                    <div class="offer-company-info">
-                        <div class="offer-company-name">TAKKAR POLYCHEM PRIVATE LIMITED</div>
-                        <div class="offer-company-subtitle">(MANUFACTURERS OF SPECIALISED COMPOUNDS AND MASTER BATCHES)</div>
-                        <div class="offer-company-details">
-                            PLOT NO. 19, ECOTECH - XII, GREATER NOIDA - 201308 (UP)<br>
-                            CIN NO. - U25209DL2022PTC392480 TAN NO. - DELT20112B<br>
-                            PHONE: +91-8178526417, Email: info@takkarpolychem.com
+
+                    <div class="offer-date-section">
+                        Dated: - ${formatDate(d.offerDate)}
+                    </div>
+
+                    <div class="offer-subject">Subject: - Offer Letter for the post of ${d.position}</div>
+
+                    <div class="offer-salutation">Dear ${d.name.split(' ')[0]},</div>
+
+                    <div class="offer-body">
+                        We are delighted to offer you the opportunity for the position of <b>${d.position}</b> with our Company <b>M/S Takkar Polychem Pvt Ltd</b>, Plot No 19, Ecotech XII, Greater Noida. This is a full-time role, and you will be reporting to <b>Mr. ${d.reportingTo}</b>.
+                    </div>
+
+                    <div class="offer-body">
+                        Your expected starting date is <b>${formatDate(d.joiningDate)}</b>. You will be asked to sign a confidentiality and non-disclosure agreement at the beginning of your employment.
+                    </div>
+
+                    <div class="offer-body">
+                        We hope to offer you a challenging and rewarding career with a high level of job satisfaction and opportunities for career development.
+                    </div>
+
+                    <div class="offer-body">
+                        Please sign the duplicate copy of this letter as an acceptance of our offer for the position of <b>${d.position}</b>.
+                    </div>
+
+                    <div class="offer-body">
+                        We are all looking forward to your joining our team.
+                    </div>
+
+                    <div class="offer-closing">
+                        <div style="margin-bottom: 0.15in;">Best regards,</div>
+                        <div style="margin-bottom: 0.35in;">For Takkar Polychem Pvt Ltd.</div>
+                        <div class="offer-signature-block">
+                            <div>${d.reportingTo}</div>
+                            <div>(Director)</div>
                         </div>
                     </div>
-                    <div class="offer-iso">
-                        CE ROHS<br>
-                        <strong>AN ISO 9001:2015 CERTIFIED COMPANY</strong>
-                    </div>
-                </div>
-
-                <div class="offer-to-section">
-                    <div class="offer-to-label">To,</div>
-                    <div class="offer-recipient-name">Mr ${d.name},</div>
-                    <div class="offer-recipient-address">${d.address}</div>
-                </div>
-
-                <div class="offer-date-section">
-                    Dated: - ${formatDate(d.offerDate)}
-                </div>
-
-                <div class="offer-subject">Subject: - Offer Letter for the post of ${d.position}</div>
-
-                <div class="offer-salutation">Dear ${d.name.split(' ')[0]},</div>
-
-                <div class="offer-body">
-                    We are delighted to offer you the opportunity for the position of <b>${d.position}</b> with our Company <b>M/S Takkar Polychem Pvt Ltd</b>, Plot No 19, Ecotech XII, Greater Noida. This is a full-time role, and you will be reporting to <b>Mr. Amit Takkar (Director)</b>.
-                </div>
-
-                <div class="offer-body">
-                    Your expected starting date is <b>${formatDate(d.joiningDate)}</b>. You will be asked to sign a confidentiality and non-disclosure agreement at the beginning of your employment.
-                </div>
-
-                <div class="offer-body">
-                    We hope to offer you a challenging and rewarding career with a high level of job satisfaction and opportunities for career development.
-                </div>
-
-                <div class="offer-body">
-                    Please sign the duplicate copy of this letter as an acceptance of our offer for the position of <b>${d.position}</b>.
-                </div>
-
-                <div class="offer-body">
-                    We are all looking forward to your joining our team.
-                </div>
-
-                <div class="offer-closing">
-                    <div style="margin-bottom: 8mm;">Best regards,</div>
-                    <div style="margin-bottom: 20mm;">For Takkar Polychem Pvt Ltd.</div>
-                    <div class="offer-name">Amit Takkar</div>
-                    <div class="offer-designation">(Director)</div>
                 </div>
             </div>
             `;
@@ -434,6 +405,10 @@
         function createAppointmentLetter(d) {
             return `
             <div class="appointment-letter">
+                <div class="appt-header-image">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Header" style="width: 100%; height: auto;">
+                </div>
+
                 <div class="appt-to-section">
                     <p><b>To,</b><br><b>Mr. ${d.name}</b><br>${d.address}<br>${d.phone}<br>${d.email}</p>
                 </div>
@@ -444,7 +419,7 @@
                     With reference to your application dated <b>${formatDate(d.appDate)}</b> and subsequent interview held on <b>${formatDate(d.intDate)}</b> we are pleased to offer you the post of <b>${d.position}</b> in our organization on the following terms and conditions.
                 </div>
 
-                <p>
+                <p style="font-size: 10pt; margin: 0.08in 0;">
                     <b>Designation : ${d.position}</b><br>
                     <b>at Rs. ${d.salary} Per month</b><br>
                     <b>w.e.f ${formatDate(d.joiningDate)}</b>
@@ -478,14 +453,14 @@
                     <b>10.</b> Your Annual compensation will be as per Annexure A, subject to TDS and other Govt and statutory deductions as applicable from time to time. During the tenure of service, you will keep your emoluments secret from other members of this organization.
                 </div>
 
-                <div style="margin-top: 20mm;">
+                <div style="margin-top: 0.3in; font-size: 10pt;">
                     Authorized Signatory<br>
-                    <b>Amit Takkar</b><br>
+                    <b>${d.reportingTo}</b><br>
                     (Director)<br>
                     <b>TAKKAR POLYCHEM PVT. LTD.</b>
                 </div>
 
-                <div style="margin-top: 20mm;">
+                <div style="margin-top: 0.3in; font-size: 10pt;">
                     (Signature of Employee)<br>
                     <b>Accepted: _____________</b>
                 </div>
