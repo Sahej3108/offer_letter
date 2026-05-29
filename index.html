@@ -519,8 +519,6 @@ We look forward to having you on our team.
 }
 function createAppointmentLetter(d) {
 
-// Detect gender from salutation or name field if available
-// We'll use d.gender if provided, otherwise default logic
 const isFemale = d.gender && d.gender.toLowerCase() === 'female';
 const shiftTiming = isFemale
     ? '9:00 AM and end at 6:00 PM'
@@ -549,16 +547,11 @@ return `
         }
     }
 
-    .appt-page{
-    width:100%;
-    min-height:257mm;
-    padding-top:20mm;
-    padding-bottom:20mm;
-    box-sizing:border-box;
-    page-break-after:always;
-}
+    .appt-page {
+        padding: 32px 48px;
+        box-sizing: border-box;
+    }
 
-    /* Every paragraph/clause must never break mid-line */
     .appt-clause {
         margin-bottom: 13px;
         text-align: justify;
@@ -568,7 +561,6 @@ return `
         widows: 99;
     }
 
-    /* Section headings always stay glued to the clause after them */
     .appt-section-heading {
         font-weight: bold;
         text-decoration: underline;
@@ -579,7 +571,6 @@ return `
         break-inside: avoid !important;
     }
 
-    /* Heading + first clause glued together */
     .no-break {
         page-break-inside: avoid !important;
         break-inside: avoid !important;
@@ -594,16 +585,15 @@ return `
         margin-bottom: 14px;
     }
 
-    /* Force a clean page with top/bottom breathing room */
     .appt-new-page {
         page-break-before: always;
         break-before: page;
     }
 </style>
 
-<!-- ═══════════════════════════════════════
-     PAGE 1  —  Header · Address · Clauses 1-3
-     ═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 1  —  Header · To · Subject · Introduction · Clause 1
+     ═══════════════════════════════════════════════════════ -->
 <div class="appt-page">
 
     <div class="appt-header-image">
@@ -658,9 +648,14 @@ return `
             reason or payment of compensation in lieu thereof.
         </div>
     </div>
-    </div>
-    
-    <div class="appt-page">
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 2  —  Clauses 2 · 3 · 4 · 5 · 6 · 7
+     ═══════════════════════════════════════════════════════ -->
+<div class="appt-page appt-new-page">
+
     <div class="appt-clause">
         <b>2.</b> After confirmation, your employment can be terminated/discharged by giving one
         month's notice in writing or one month's salary/wages in lieu thereof by either side. In
@@ -672,8 +667,8 @@ return `
     </div>
 
     <div class="appt-clause">
-        <b>3.</b> Your place of posting will, at present, be at Greater Noida. You are liable to be
-        transferred/posted from your current branch of the company to any other
+        <b>3.</b> Your place of posting will, at present, be at Greater Noida. You are liable to
+        be transferred/posted from your current branch of the company to any other
         establishment/branches/sister concerns of the company now in existence or that may come up
         in future anywhere where the company premises are located without any extra remuneration
         which may arise as an incidence of service. You are also liable to be transferred from one
@@ -681,17 +676,9 @@ return `
         carry out such orders will constitute misconduct.
     </div>
 
-
-
-<!-- ═══════════════════════════════════════
-     PAGE 2  —  Clauses 4-5 · Termination 6-9
-     ═══════════════════════════════════════ -->
-
-
     <div class="appt-clause">
-        <b>4.</b> Your shift timings start from ${shiftTiming},
-        from Monday to Saturday or as decided by the Management,
-        and your reporting time will be ${reportingTime}.
+        <b>4.</b> Your shift timings start from ${shiftTiming}, from Monday to Saturday or as
+        decided by the Management, and your reporting time will be ${reportingTime}.
     </div>
 
     <div class="appt-clause">
@@ -718,11 +705,16 @@ return `
         abandonment of service, and your name will be struck off from the rolls of the company
         without any notice to you. You shall faithfully and to the best of your ability perform
         your duties that may be entrusted to you from time to time by the Management. You will be
-        bound by the rules, regulations and orders promulgated by the Management in relation to the
-        conduct, discipline, and policy matters.
+        bound by the rules, regulations and orders promulgated by the Management in relation to
+        the conduct, discipline, and policy matters.
     </div>
 
-    <div class="appt-page appt-new-page">
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 3  —  Clauses 8 · 9 · 10 · 11 · 12
+     ═══════════════════════════════════════════════════════ -->
+<div class="appt-page appt-new-page">
 
     <div class="appt-clause">
         <b>8.</b> In the event of your becoming unfit for performance of your normal duties as a
@@ -770,14 +762,6 @@ return `
         of Wages Act) during the first 90 days of your suspension.
     </div>
 
-</div>
-
-<!-- ═══════════════════════════════════════
-     PAGE 3  —  Salary · Secrecy · General Rules 15-19
-     ═══════════════════════════════════════ -->
-<div class="appt-page">
-
-
     <div class="no-break">
         <div class="appt-section-heading">SALARY AND EMOLUMENTS</div>
         <div class="appt-clause">
@@ -798,6 +782,13 @@ return `
         connection should be referred to the Managing Director or a person designated by the
         Managing Director.
     </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 4  —  Clauses 13 · 14 · 15 · 16 · 17
+     ═══════════════════════════════════════════════════════ -->
+<div class="appt-page appt-new-page">
 
     <div class="no-break">
         <div class="appt-section-heading">SECRECY &amp; NON-SOLICITATION</div>
@@ -869,6 +860,13 @@ return `
         seriousness and may lead to the initiation of strict disciplinary action.
     </div>
 
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 5  —  Clauses 18–26 · Asset Policy · POSH · Retirement · Dispute
+     ═══════════════════════════════════════════════════════ -->
+<div class="appt-page appt-new-page">
+
     <div class="appt-clause">
         <b>18.</b> You will be entitled to statutory and service benefits along with any other
         rules that may come into existence from time to time, as and when applicable as per
@@ -892,13 +890,6 @@ return `
         E.S.I.C., if you are covered under the Scheme, and you will be allowed to resume duly on
         the expiry of the medical leave on submission of a proper illness certificate.
     </div>
-
-</div>
-
-<!-- ═══════════════════════════════════════
-     PAGE 4  —  General Rules 21-25 · Asset · POSH · Retirement · Dispute
-     ═══════════════════════════════════════ -->
-<div class="appt-page appt-new-page">
 
     <div class="appt-clause">
         <b>21.</b> You shall be governed by the Rules and Regulations, Standing Orders of the
@@ -1025,9 +1016,9 @@ return `
 
 </div>
 
-<!-- ═══════════════════════════════════════
-     PAGE 5  —  Signatures + Declaration
-     ═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 6  —  Signatures + Declaration
+     ═══════════════════════════════════════════════════════ -->
 <div class="appt-page appt-new-page">
 
     <div class="no-break" style="
@@ -1048,12 +1039,8 @@ return `
         </div>
     </div>
 
-    <div class="no-break" style="
-        border-top: 1px solid #ccc;
-        padding-top: 22px;
-    ">
+    <div class="no-break" style="border-top:1px solid #ccc; padding-top:22px;">
         <div style="font-weight:bold; margin-bottom:14px;">DECLARATION</div>
-
         <div class="appt-clause" style="margin-bottom:50px;">
             I have carefully read and understood the above terms and conditions contained in this
             Appointment Letter and also conditions of service and service rules of the Company.
@@ -1062,7 +1049,6 @@ return `
             conditions without any reservations and have received the original Copy of the
             appointment letter.
         </div>
-
         <div style="margin-bottom:22px;">
             Signature ....................................................
         </div>
@@ -1073,12 +1059,12 @@ return `
 
 </div>
 
-<!-- ═══════════════════════════════════════
-     PAGE 6  —  Annexure B
-     ═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 7  —  Annexure B
+     ═══════════════════════════════════════════════════════ -->
 <div class="appt-page appt-new-page">
 
-    <div class="no-break" style="
+    <div style="
         text-align:center;
         font-weight:bold;
         text-decoration:underline;
