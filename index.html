@@ -517,646 +517,654 @@ We look forward to having you on our team.
 
     `;
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Appointment Letter</title>
+
+
+        function createAppointmentLetter(d) {
+
+const isFemale = d.gender && d.gender.toLowerCase() === 'female';
+const shiftTiming = isFemale
+    ? '9:00 AM and end at 6:00 PM'
+    : '9:30 AM and end at 6:30 PM';
+const reportingTime = isFemale ? '8:50 AM' : '9:20 AM';
+
+return `
+
+<div class="appointment-letter">
+
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: #e0e0e0;
-    font-family: Arial, sans-serif;
-  }
-
-  /* ── Screen wrapper ── */
-  .appointment-letter {
-    font-family: Arial, sans-serif;
-    font-size: 10pt;
-    line-height: 1.55;
-    color: #000;
-  }
-
-  /* ── A4 page simulation on screen ── */
-  .appt-page {
-    width: 210mm;
-    min-height: 297mm;
-    box-sizing: border-box;
-    /* Page 1: top padding reduced for header image */
-    padding: 8mm 18mm 18mm 18mm;
-    margin: 0 auto 16px auto;
-    background: #fff;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Pages 2+ get equal top & bottom margins */
-  .appt-page-n {
-    padding: 18mm 18mm 18mm 18mm;
-  }
-
-  /* ── Print: real A4 ── */
-  @media print {
-    body { background: #fff; }
-
-    @page {
-      size: A4;
-      margin: 18mm 18mm 18mm 18mm;
-    }
-
-    /* Page 1: no top margin (header image is full-width) */
-    @page :first {
-      margin-top: 8mm;
+    .appointment-letter {
+        font-family: Arial, sans-serif;
+        font-size: 10pt;
+        line-height: 1.55;
+        color: #000;
     }
 
     .appt-page {
-      width: 100%;
-      min-height: auto;
-      padding: 0 !important;
-      margin: 0 !important;
-      overflow: visible;
+        width: 210mm;
+        min-height: 297mm;
+        box-sizing: border-box;
+        padding: 8mm 18mm 18mm 18mm;
+        margin: 0 auto 16px auto;
+        background: #fff;
+        position: relative;
+        overflow: hidden;
     }
 
-    .appt-new-page {
-      page-break-before: always;
-      break-before: page;
+    .appt-page-n {
+        padding: 18mm 18mm 18mm 18mm;
     }
-  }
 
-  /* ── Content blocks ── */
-  .appt-clause {
-    margin-bottom: 7px;
-    text-align: justify;
-    page-break-inside: avoid;
-    break-inside: avoid;
-    orphans: 3;
-    widows: 3;
-  }
+    @media print {
+        body { background: #fff; }
 
-  .appt-section-heading {
-    font-weight: bold;
-    text-decoration: underline;
-    margin: 12px 0 5px 0;
-    page-break-after: avoid;
-    break-after: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
+        @page {
+            size: A4;
+            margin: 18mm 18mm 18mm 18mm;
+        }
 
-  .no-break {
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
+        @page :first {
+            margin-top: 8mm;
+        }
 
-  .appt-header-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 10px;
-  }
+        .appt-page {
+            width: 100%;
+            min-height: auto;
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow: visible;
+        }
+
+        .appt-new-page {
+            page-break-before: always;
+            break-before: page;
+        }
+    }
+
+    .appt-clause {
+        margin-bottom: 7px;
+        text-align: justify;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        orphans: 3;
+        widows: 3;
+    }
+
+    .appt-section-heading {
+        font-weight: bold;
+        text-decoration: underline;
+        margin: 12px 0 5px 0;
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    .no-break {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .appt-header-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 10px;
+    }
 </style>
-</head>
-<body>
-<div class="appointment-letter">
 
-<!-- ═══════════════════════════════════════════
-     PAGE 1
-     ═══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 1 — Header · To · Subject · Introduction · Clause 1
+     ═══════════════════════════════════════════════════════ -->
 <div class="appt-page appt-page-1">
 
-  <div class="appt-header-image">
-    <img src="https://lh3.googleusercontent.com/d/12nbtBC4MabKhhoT72iY37NWI83QjJxUS" alt="Company Header">
-  </div>
-
-  <div class="appt-clause" style="margin-bottom:10px;">
-    <b>To,</b><br>
-    John Doe<br>
-    123, Sample Street, Greater Noida<br>
-    +91-9876543210<br>
-    john.doe@email.com
-  </div>
-
-  <div class="appt-clause" style="font-size:11pt; font-weight:bold; margin:10px 0;">
-    Subject: APPOINTMENT LETTER
-  </div>
-
-  <div class="appt-clause">Dear John,</div>
-
-  <div class="appt-clause">
-    With reference to your application dated <b>01 Jan 2025</b> and subsequent
-    interview held on <b>10 Jan 2025</b> we are pleased to offer you the post of
-    <b>MIS Executive</b> in our organization on the following terms and conditions.
-  </div>
-
-  <div class="appt-clause" style="margin-left:36px; line-height:1.9; margin-top:6px; margin-bottom:6px;">
-    <b>Designation : MIS Executive</b><br>
-    <b>at Rs. 25,000 Per month</b><br>
-    <b>w.e.f 15 Jan 2025</b>
-  </div>
-
-  <div class="appt-clause">
-    The details of your remuneration are enumerated in <b>Annexure A</b>, enclosed. The payment
-    of salary and benefits shall be subject to deduction of Income Tax as per the prevailing
-    Income Tax rates and other statutory deductions, as may be required under the applicable
-    legislation in force from time to time. Your compensation will be renewed under the
-    Company's policies from time to time, at the sole discretion of the Company.
-  </div>
-
-  <div class="no-break">
-    <div class="appt-section-heading">PROBATION &amp; CONFIRMATION</div>
-    <div class="appt-clause">
-      <b>1.</b> You will be on probation for the first <b>6 months</b> of your employment.
-      You will not be deemed to be confirmed until the letter of confirmation has been issued
-      to you and till such time you shall be on probation on the terms and conditions
-      applicable to the initial probationary period as mentioned in this letter. During or at
-      the expiry of the period of probation or such extended period of probation, your
-      services are liable to be terminated at any time without notice or without assigning any
-      reason or payment of compensation in lieu thereof.
+    <div class="appt-header-image">
+        <img src="https://lh3.googleusercontent.com/d/12nbtBC4MabKhhoT72iY37NWI83QjJxUS" alt="Company Header">
     </div>
-  </div>
+
+    <div class="appt-clause" style="margin-bottom:10px;">
+        <b>To,</b><br>
+        ${d.name}<br>
+        ${d.address}<br>
+        ${d.phone}<br>
+        ${d.email}
+    </div>
+
+    <div class="appt-clause" style="font-size:11pt; font-weight:bold; margin:10px 0;">
+        Subject: APPOINTMENT LETTER
+    </div>
+
+    <div class="appt-clause">Dear ${d.name.split(' ')[0]},</div>
+
+    <div class="appt-clause">
+        With reference to your application dated <b>${formatDate(d.appDate)}</b> and subsequent
+        interview held on <b>${formatDate(d.intDate)}</b> we are pleased to offer you the post of
+        <b>${d.position}</b> in our organization on the following terms and conditions.
+    </div>
+
+    <div class="appt-clause" style="margin-left:36px; line-height:1.9; margin-top:6px; margin-bottom:6px;">
+        <b>Designation : ${d.position}</b><br>
+        <b>at Rs. ${d.salary} Per month</b><br>
+        <b>w.e.f ${formatDate(d.joiningDate)}</b>
+    </div>
+
+    <div class="appt-clause">
+        The details of your remuneration are enumerated in <b>Annexure A</b>, enclosed. The payment
+        of salary and benefits shall be subject to deduction of Income Tax as per the prevailing
+        Income Tax rates and other statutory deductions, as may be required under the applicable
+        legislation in force from time to time. Your compensation will be renewed under the
+        Company's policies from time to time, at the sole discretion of the Company.
+    </div>
+
+    <div class="no-break">
+        <div class="appt-section-heading">PROBATION &amp; CONFIRMATION</div>
+        <div class="appt-clause">
+            <b>1.</b> You will be on probation for the first <b>6 months</b> of your employment.
+            You will not be deemed to be confirmed until the letter of confirmation has been issued
+            to you and till such time you shall be on probation on the terms and conditions
+            applicable to the initial probationary period as mentioned in this letter. During or at
+            the expiry of the period of probation or such extended period of probation, your
+            services are liable to be terminated at any time without notice or without assigning any
+            reason or payment of compensation in lieu thereof.
+        </div>
+    </div>
 
 </div>
 
-<!-- ═══════════════════════════════════════════
-     PAGE 2
-     ═══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 2 — Clauses 2 · 3 · 4 · 5 · 6 · 7 · 8
+     ═══════════════════════════════════════════════════════ -->
 <div class="appt-page appt-page-n appt-new-page">
 
-  <div class="appt-clause">
-    <b>2.</b> After confirmation, your employment can be terminated/discharged by giving one
-    month's notice in writing or one month's salary/wages in lieu thereof by either side. In
-    case you leave your employment without giving notice in the said manner, the management
-    shall have the right to deduct one month's salary or an amount equal to the number of days
-    the notice falls short of money that may be due to you, or shall recover such amount in the
-    manner it deems fit. Further, in case of resignation, the management reserves the right to
-    accept the same with immediate effect.
-  </div>
-
-  <div class="appt-clause">
-    <b>3.</b> Your place of posting will, at present, be at Greater Noida. You are liable to
-    be transferred/posted from your current branch of the company to any other
-    establishment/branches/sister concerns of the company now in existence or that may come up
-    in future anywhere where the company premises are located without any extra remuneration
-    which may arise as an incidence of service. You are also liable to be transferred from one
-    department to another, from one shift to another whether day or night. Your refusal to
-    carry out such orders will constitute misconduct.
-  </div>
-
-  <div class="appt-clause">
-    <b>4.</b> Your shift timings start from 9:30 AM and end at 6:30 PM, from Monday to Saturday or as
-    decided by the Management, and your reporting time will be 9:20 AM.
-  </div>
-
-  <div class="appt-clause">
-    <b>5.</b> Every employee is required to complete a minimum of <b>9 (nine) working hours</b>
-    per day. If you report late to work, you will be required to stay and complete the full
-    9-hour working period accordingly, and will not be permitted to leave before the completion
-    of 9 hours from the time of your arrival. Repeated late arrivals may be treated as
-    indiscipline and may attract suitable action as per company policy.
-  </div>
-
-  <div class="no-break">
-    <div class="appt-section-heading">TERMINATION OF SERVICES</div>
     <div class="appt-clause">
-      <b>6.</b> Your services are liable to be terminated without any notice if any
-      information tendered by you in your application for employment on the basis of which
-      this offer is made is found to be false, misleading, or certain facts are found to have
-      been omitted or exaggerated in it.
+        <b>2.</b> After confirmation, your employment can be terminated/discharged by giving one
+        month's notice in writing or one month's salary/wages in lieu thereof by either side. In
+        case you leave your employment without giving notice in the said manner, the management
+        shall have the right to deduct one month's salary or an amount equal to the number of days
+        the notice falls short of money that may be due to you, or shall recover such amount in the
+        manner it deems fit. Further, in case of resignation, the management reserves the right to
+        accept the same with immediate effect.
     </div>
-  </div>
 
-  <div class="appt-clause">
-    <b>7.</b> Continued absence from duty for 8 days without express permission in writing of
-    the management or overstay of sanctioned leave for 8 days shall tantamount to voluntary
-    abandonment of service, and your name will be struck off from the rolls of the company
-    without any notice to you. You shall faithfully and to the best of your ability perform
-    your duties that may be entrusted to you from time to time by the Management. You will be
-    bound by the rules, regulations and orders promulgated by the Management in relation to
-    the conduct, discipline, and policy matters.
-  </div>
+    <div class="appt-clause">
+        <b>3.</b> Your place of posting will, at present, be at Greater Noida. You are liable to
+        be transferred/posted from your current branch of the company to any other
+        establishment/branches/sister concerns of the company now in existence or that may come up
+        in future anywhere where the company premises are located without any extra remuneration
+        which may arise as an incidence of service. You are also liable to be transferred from one
+        department to another, from one shift to another whether day or night. Your refusal to
+        carry out such orders will constitute misconduct.
+    </div>
+
+    <div class="appt-clause">
+        <b>4.</b> Your shift timings start from ${shiftTiming}, from Monday to Saturday or as
+        decided by the Management, and your reporting time will be ${reportingTime}.
+    </div>
+
+    <div class="appt-clause">
+        <b>5.</b> Every employee is required to complete a minimum of <b>9 (nine) working hours</b>
+        per day. If you report late to work, you will be required to stay and complete the full
+        9-hour working period accordingly, and will not be permitted to leave before the completion
+        of 9 hours from the time of your arrival. Repeated late arrivals may be treated as
+        indiscipline and may attract suitable action as per company policy.
+    </div>
+
+    <div class="no-break">
+        <div class="appt-section-heading">TERMINATION OF SERVICES</div>
+        <div class="appt-clause">
+            <b>6.</b> Your services are liable to be terminated without any notice if any
+            information tendered by you in your application for employment on the basis of which
+            this offer is made is found to be false, misleading, or certain facts are found to have
+            been omitted or exaggerated in it.
+        </div>
+    </div>
+
+    <div class="appt-clause">
+        <b>7.</b> Continued absence from duty for 8 days without express permission in writing of
+        the management or overstay of sanctioned leave for 8 days shall tantamount to voluntary
+        abandonment of service, and your name will be struck off from the rolls of the company
+        without any notice to you. You shall faithfully and to the best of your ability perform
+        your duties that may be entrusted to you from time to time by the Management. You will be
+        bound by the rules, regulations and orders promulgated by the Management in relation to
+        the conduct, discipline, and policy matters.
+    </div>
+
+    <div class="appt-clause">
+        <b>8.</b> In the event of your becoming unfit for performance of your normal duties as a
+        consequence of ill health, accident etc., you are liable to be discharged from services by
+        serving one month's notice by the management or making payment in lieu thereof. Your
+        appointment and its continuance in the organization is subject to you remaining medically,
+        physically and mentally fit. Further, the management reserves the right to get you examined
+        by the medical officer of the company or a Medical Practitioner nominated by the company,
+        wherein you shall undergo such medical examination as required. If you are found medically
+        unfit, the management reserves the right to take appropriate action wherein your services
+        may be discharged. Failure to comply with such instructions shall tantamount to gross
+        misconduct leading to dismissal from service.
+    </div>
 
 </div>
 
-<!-- ═══════════════════════════════════════════
-     PAGE 3
-     ═══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 3 — Clauses 9 · 10 · 11 · 12
+     ═══════════════════════════════════════════════════════ -->
 <div class="appt-page appt-page-n appt-new-page">
 
-  <div class="appt-clause">
-    <b>8.</b> In the event of your becoming unfit for performance of your normal duties as a
-    consequence of ill health, accident etc., you are liable to be discharged from services by
-    serving one month's notice by the management or making payment in lieu thereof. Your
-    appointment and its continuance in the organization is subject to you remaining medically,
-    physically and mentally fit. Further, the management reserves the right to get you examined
-    by the medical officer of the company or a Medical Practitioner nominated by the company,
-    wherein you shall undergo such medical examination as required. If you are found medically
-    unfit, the management reserves the right to take appropriate action wherein your services
-    may be discharged. Failure to comply with such instructions shall tantamount to gross
-    misconduct leading to dismissal from service.
-  </div>
-
-  <div class="appt-clause">
-    <b>9.</b> Your services can be terminated by the Company, without any notice or payment of
-    any kind in lieu of notice, in the following cases:
-    <div style="margin-left:16px; margin-top:5px;">
-      <div class="appt-clause">
-        <b>I.</b>&nbsp; Any incorrect information furnished by you or suppression of any
-        material information.
-      </div>
-      <div class="appt-clause">
-        <b>II.</b>&nbsp; Any act which, in the opinion of the management, is an act of
-        dishonesty, disobedience or insubordination. Incivility, misappropriation of funds,
-        loss of confidence, acceptance of remuneration or gift in cash or kind from anyone,
-        gross mismanagement of the affairs of the company/group, gross misconduct,
-        intemperance, irregularity in attendance, neglect of duty, riotous behavior,
-        incompetence in discharge of duty, breach of any terms or conditions of this
-        agreement, or violation of company rules/regulations, standing orders or any other
-        misconduct.
-      </div>
-      <div class="appt-clause">
-        <b>III.</b>&nbsp; You being arrested by police for any offense and remaining in
-        custody for more than 3 days, or on Police Verification it was found that there is
-        a criminal/civil case pending against you or a complaint has been filed against you.
-      </div>
-    </div>
-  </div>
-
-  <div class="appt-clause">
-    <b>10.</b> In the event of your committing any act/acts of misconduct, you can be suspended
-    from the services of the organization. While under suspension pending enquiry, you shall be
-    paid subsistence allowance equivalent to 50% of your wages (wages as defined in the Payment
-    of Wages Act) during the first 90 days of your suspension.
-  </div>
-
-  <div class="no-break">
-    <div class="appt-section-heading">SALARY AND EMOLUMENTS</div>
     <div class="appt-clause">
-      <b>11.</b> Your Annual compensation will be as per <b>Annexure A</b>, subject to TDS
-      and other Govt and statutory deductions as applicable from time to time. During the
-      tenure of service, you will keep your emoluments secret from other members of this
-      organization and will treat all information coming to you as strictly confidential. The
-      information contained in all documents, papers and other matters relating to the company
-      will not be divulged by you to any person other than those of the management.
+        <b>9.</b> Your services can be terminated by the Company, without any notice or payment of
+        any kind in lieu of notice, in the following cases:
+        <div style="margin-left:16px; margin-top:5px;">
+            <div class="appt-clause">
+                <b>I.</b>&nbsp; Any incorrect information furnished by you or suppression of any
+                material information.
+            </div>
+            <div class="appt-clause">
+                <b>II.</b>&nbsp; Any act which, in the opinion of the management, is an act of
+                dishonesty, disobedience or insubordination. Incivility, misappropriation of funds,
+                loss of confidence, acceptance of remuneration or gift in cash or kind from anyone,
+                gross mismanagement of the affairs of the company/group, gross misconduct,
+                intemperance, irregularity in attendance, neglect of duty, riotous behavior,
+                incompetence in discharge of duty, breach of any terms or conditions of this
+                agreement, or violation of company rules/regulations, standing orders or any other
+                misconduct.
+            </div>
+            <div class="appt-clause">
+                <b>III.</b>&nbsp; You being arrested by police for any offense and remaining in
+                custody for more than 3 days, or on Police Verification it was found that there is
+                a criminal/civil case pending against you or a complaint has been filed against you.
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="appt-clause">
-    <b>12.</b> By the usual practice of the Company, your salary will be directly credited to
-    your salary account. This mode of payment is employed with a view to keeping confidential
-    the salaries of staff in our organization. You are not to disclose the terms of your
-    employment to any person, including the employees of the Company. All issues in this
-    connection should be referred to the Managing Director or a person designated by the
-    Managing Director.
-  </div>
+    <div class="appt-clause">
+        <b>10.</b> In the event of your committing any act/acts of misconduct, you can be suspended
+        from the services of the organization. While under suspension pending enquiry, you shall be
+        paid subsistence allowance equivalent to 50% of your wages (wages as defined in the Payment
+        of Wages Act) during the first 90 days of your suspension.
+    </div>
+
+    <div class="no-break">
+        <div class="appt-section-heading">SALARY AND EMOLUMENTS</div>
+        <div class="appt-clause">
+            <b>11.</b> Your Annual compensation will be as per <b>Annexure A</b>, subject to TDS
+            and other Govt and statutory deductions as applicable from time to time. During the
+            tenure of service, you will keep your emoluments secret from other members of this
+            organization and will treat all information coming to you as strictly confidential. The
+            information contained in all documents, papers and other matters relating to the company
+            will not be divulged by you to any person other than those of the management.
+        </div>
+    </div>
+
+    <div class="appt-clause">
+        <b>12.</b> By the usual practice of the Company, your salary will be directly credited to
+        your salary account. This mode of payment is employed with a view to keeping confidential
+        the salaries of staff in our organization. You are not to disclose the terms of your
+        employment to any person, including the employees of the Company. All issues in this
+        connection should be referred to the Managing Director or a person designated by the
+        Managing Director.
+    </div>
 
 </div>
 
-<!-- ═══════════════════════════════════════════
-     PAGE 4
-     ═══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 4 — Clauses 13 · 14 · 15 · 16 · 17
+     ═══════════════════════════════════════════════════════ -->
 <div class="appt-page appt-page-n appt-new-page">
 
-  <div class="no-break">
-    <div class="appt-section-heading">SECRECY &amp; NON-SOLICITATION</div>
-    <div class="appt-clause">
-      <b>13.</b> You shall not, unless authorized in writing or required by your obligations
-      in terms hereof, reveal/disclose/disseminate to any person or entity including
-      competitors or persons involved directly or indirectly in allied trade, any of the trade
-      secrets, secret or confidential information, information contained in manuals and/or
-      dealings or any information concerning the business, finances, external and internal
-      transactions of the Company and/or its affiliates/Associates/Group Companies, including
-      but not limited to all data covering company contacts, processes, policies, strategies
-      involving marketing, advertising, operations, contractual obligations and business
-      expansion ('confidential information'), which may come to your knowledge or be imparted
-      to you by the Company during your employment hereunder.
+    <div class="no-break">
+        <div class="appt-section-heading">SECRECY &amp; NON-SOLICITATION</div>
+        <div class="appt-clause">
+            <b>13.</b> You shall not, unless authorized in writing or required by your obligations
+            in terms hereof, reveal/disclose/disseminate to any person or entity including
+            competitors or persons involved directly or indirectly in allied trade, any of the trade
+            secrets, secret or confidential information, information contained in manuals and/or
+            dealings or any information concerning the business, finances, external and internal
+            transactions of the Company and/or its affiliates/Associates/Group Companies, including
+            but not limited to all data covering company contacts, processes, policies, strategies
+            involving marketing, advertising, operations, contractual obligations and business
+            expansion ('confidential information'), which may come to your knowledge or be imparted
+            to you by the Company during your employment hereunder.
+        </div>
     </div>
-  </div>
 
-  <div class="appt-clause">
-    You shall maintain strict confidentiality with respect to all such information and shall
-    not, during your employment or at any time thereafter, disclose, share, use, reproduce, or
-    exploit any Confidential Information for personal gain or the benefit of any third party,
-    except as necessary in the proper performance of your duties and with prior written
-    authorization from the Company. You shall also take all reasonable steps to protect such
-    information from unauthorized access or disclosure.
-  </div>
-
-  <div class="appt-clause">
-    Any breach of this confidentiality obligation shall be considered a serious violation of
-    the terms of your employment and may result in disciplinary action, including termination
-    and/or legal proceedings, as deemed appropriate by the Company.
-  </div>
-
-  <div class="appt-clause">
-    <b>This restriction shall survive discharge of your employment with the Company without
-    limit in point of time.</b>
-  </div>
-
-  <div class="appt-clause">
-    <b>14.</b> You shall not at any time during the term of your employment with the Company or
-    thereafter, under any circumstances, directly or indirectly solicit or attempt to solicit
-    the Company's and/or any of its subsidiaries/affiliates/group companies' personnel to leave
-    the employment of the Company or apply for employment with any third party, or encourage
-    such personnel to breach their obligations under this Appointment Letter, or adversely
-    impact the ability of the Company to carry out its normal business activities.
-  </div>
-
-  <div class="appt-clause">
-    <b>15.</b> You have further agreed you shall not engage in soliciting business or allied
-    business that is in any way similar, identical or competitive with the business, activities
-    or services of the Company, or with those customers of the Company with whom you may have
-    had any contact during your employment, and for a period of one year after your employment
-    ceases with the Company.
-  </div>
-
-  <div class="no-break">
-    <div class="appt-section-heading">GENERAL RULES &amp; REGULATIONS</div>
     <div class="appt-clause">
-      <b>16.</b> As an <b>MIS Executive</b>, you are expected to uphold accuracy,
-      confidentiality, and integrity in managing company data and reports. Your conduct must
-      reflect professionalism, attention to detail, and adherence to ethical data handling
-      practices while supporting management with reliable insights for decision-making.
+        You shall maintain strict confidentiality with respect to all such information and shall
+        not, during your employment or at any time thereafter, disclose, share, use, reproduce, or
+        exploit any Confidential Information for personal gain or the benefit of any third party,
+        except as necessary in the proper performance of your duties and with prior written
+        authorization from the Company. You shall also take all reasonable steps to protect such
+        information from unauthorized access or disclosure.
     </div>
-  </div>
 
-  <div class="appt-clause">
-    <b>17.</b> You shall further ensure that no act, omission, or behavior on your part causes
-    reputational, legal, or financial harm to the Company. Any act of misconduct,
-    misrepresentation, or violation of the Company's Code of Conduct shall be treated with
-    seriousness and may lead to the initiation of strict disciplinary action.
-  </div>
+    <div class="appt-clause">
+        Any breach of this confidentiality obligation shall be considered a serious violation of
+        the terms of your employment and may result in disciplinary action, including termination
+        and/or legal proceedings, as deemed appropriate by the Company.
+    </div>
+
+    <div class="appt-clause">
+        <b>This restriction shall survive discharge of your employment with the Company without
+        limit in point of time.</b>
+    </div>
+
+    <div class="appt-clause">
+        <b>14.</b> You shall not at any time during the term of your employment with the Company or
+        thereafter, under any circumstances, directly or indirectly solicit or attempt to solicit
+        the Company's and/or any of its subsidiaries/affiliates/group companies' personnel to leave
+        the employment of the Company or apply for employment with any third party, or encourage
+        such personnel to breach their obligations under this Appointment Letter, or adversely
+        impact the ability of the Company to carry out its normal business activities.
+    </div>
+
+    <div class="appt-clause">
+        <b>15.</b> You have further agreed you shall not engage in soliciting business or allied
+        business that is in any way similar, identical or competitive with the business, activities
+        or services of the Company, or with those customers of the Company with whom you may have
+        had any contact during your employment, and for a period of one year after your employment
+        ceases with the Company.
+    </div>
+
+    <div class="no-break">
+        <div class="appt-section-heading">GENERAL RULES &amp; REGULATIONS</div>
+        <div class="appt-clause">
+            <b>16.</b> As an <b>${d.position}</b>, you are expected to uphold accuracy,
+            confidentiality, and integrity in managing company data and reports. Your conduct must
+            reflect professionalism, attention to detail, and adherence to ethical data handling
+            practices while supporting management with reliable insights for decision-making.
+        </div>
+    </div>
+
+    <div class="appt-clause">
+        <b>17.</b> You shall further ensure that no act, omission, or behavior on your part causes
+        reputational, legal, or financial harm to the Company. Any act of misconduct,
+        misrepresentation, or violation of the Company's Code of Conduct shall be treated with
+        seriousness and may lead to the initiation of strict disciplinary action.
+    </div>
 
 </div>
 
-<!-- ═══════════════════════════════════════════
-     PAGE 5
-     ═══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 5 — Clauses 18–31 · Closing
+     ═══════════════════════════════════════════════════════ -->
 <div class="appt-page appt-page-n appt-new-page">
 
-  <div class="appt-clause">
-    <b>18.</b> You will be entitled to statutory and service benefits along with any other
-    rules that may come into existence from time to time, as and when applicable as per
-    statutory labor enactments of the state, as amended from time to time, and as per
-    location/place wherever you are working.
-  </div>
-
-  <div class="appt-clause">
-    <b>19.</b> You shall report to the authority as designated by the company/his assignee.
-    You shall contribute to the overall activities of the company/group for its smooth running
-    and shall perform and/or take such responsibilities as arise out of exigencies of the work
-    from time to time.
-  </div>
-
-  <div class="appt-clause">
-    <b>20.</b> You will be entitled to leave and holidays as per the rules and policies of the
-    management as framed from time to time and applicable to employees in the
-    office/establishment/department in which you are posted. You may avail leave with prior
-    sanction of the management and as per state rules. Your application for medical leave
-    should be duly supported by a medical certificate granted by the Medical Officer of the
-    E.S.I.C., if you are covered under the Scheme, and you will be allowed to resume duly on
-    the expiry of the medical leave on submission of a proper illness certificate.
-  </div>
-
-  <div class="appt-clause">
-    <b>21.</b> You shall be governed by the Rules and Regulations, Standing Orders of the
-    company and orders and instructions issued by the management from time to time. These terms
-    and conditions of this appointment letter supersede any prior oral or written understanding
-    regarding the terms and conditions of employment with the company.
-  </div>
-
-  <div class="appt-clause">
-    <b>22.</b> Unapproved absences shall be classified as "Leave Without Pay" and shall be
-    deducted from the monthly compensation. For the purposes of this policy, "unapproved
-    absences" are defined as those for which prior approval has not been obtained at least
-    three (3) days in advance, in the case of planned leave and non-emergent circumstances.
-  </div>
-
-  <div class="appt-clause">
-    <b>23.</b> You shall not resort to a strike or adopt go-slow tactics without giving prior
-    proper and requisite notice to the management. In the event of you resorting to slow
-    tactics, your wages shall be liable to be deducted to the extent of the shortage in normal
-    work, besides rendering you liable for disciplinary action under the law.
-  </div>
-
-  <div class="appt-clause">
-    <b>24.</b> You will not refuse any letters/communication delivered to you by hand or by
-    Registered post. Refusal to accept the same shall constitute gross misconduct. Further, in
-    case of your refusal to accept any communication, a copy of the same shall be displayed on
-    the Notice Board of the company, and it shall be deemed to have been served to you in
-    person.
-  </div>
-
-  <div class="appt-clause">
-    <b>25.</b> You will be a whole-time employee of the company and during your employment you
-    will not engage yourself in any other work or occupation, directly or indirectly, part-time
-    or full-time, honorary or otherwise. You will also not divulge/disclose or communicate to
-    any person any information concerning the affairs of the company or its clients of which
-    you may become possessed during the period of your employment.
-  </div>
-
-  <div class="appt-clause">
-    <b>26.</b> You will keep the management informed in writing of any changes in your
-    residential address; otherwise all communications intended to be served on you shall be
-    sent to the last address given by you and shall be deemed to have been delivered to you.
-    Responsibility for non-receipt of the same will be yours.
-  </div>
-
-  <div class="no-break">
-    <div class="appt-section-heading">ASSET POLICY</div>
     <div class="appt-clause">
-      <b>27.</b> That after completion of the termination process, it is mandated that all
-      company assets, demo kits, or any other company property in your custody must be duly
-      handed over. In the event of non-compliance, management reserves the right to initiate
-      recovery proceedings against you.
+        <b>18.</b> You will be entitled to statutory and service benefits along with any other
+        rules that may come into existence from time to time, as and when applicable as per
+        statutory labor enactments of the state, as amended from time to time, and as per
+        location/place wherever you are working.
     </div>
-  </div>
 
-  <div class="appt-clause">
-    <b>28.</b> You shall be responsible for the safekeeping and returning in good order of all
-    the company properties which may be in your possession, custody, care or charge. The
-    management shall have the right to deduct the money value of such things/any advances made
-    to you from your salary/dues and take such other action as it deems fit, in the event of
-    your failure to account for such properties/advances whether during or after the course of
-    service.
-  </div>
-
-  <div class="no-break">
-    <div class="appt-section-heading">POSH POLICY</div>
     <div class="appt-clause">
-      <b>29.</b> The Company is committed to providing a safe and respectful work environment
-      for all employees, free from sexual harassment and discrimination. As part of this
-      commitment, the company strictly adheres to the provisions of the Sexual Harassment of
-      Women at Workplace Act. For more details, please refer to the company's detailed POSH
-      policy document, available in the employee handbook and on the company intranet.
+        <b>19.</b> You shall report to the authority as designated by the company/his assignee.
+        You shall contribute to the overall activities of the company/group for its smooth running
+        and shall perform and/or take such responsibilities as arise out of exigencies of the work
+        from time to time.
     </div>
-  </div>
 
-  <div class="no-break">
-    <div class="appt-section-heading">RETIREMENT</div>
     <div class="appt-clause">
-      <b>30.</b> You will retire from the service of the company on your attaining the age of 58 years.
+        <b>20.</b> You will be entitled to leave and holidays as per the rules and policies of the
+        management as framed from time to time and applicable to employees in the
+        office/establishment/department in which you are posted. You may avail leave with prior
+        sanction of the management and as per state rules. Your application for medical leave
+        should be duly supported by a medical certificate granted by the Medical Officer of the
+        E.S.I.C., if you are covered under the Scheme, and you will be allowed to resume duly on
+        the expiry of the medical leave on submission of a proper illness certificate.
     </div>
-  </div>
 
-  <div class="no-break">
-    <div class="appt-section-heading">DISPUTE SETTLEMENT</div>
     <div class="appt-clause">
-      <b>31.</b> All disputes arising in connection with this Appointment Letter shall be
-      settled, if possible, by amicable negotiation of the parties. If the matter is not
-      resolved by amicable negotiations within twenty (20) business days or such later date
-      as may be unanimously agreed upon, then the dispute shall be submitted to arbitration
-      before the sole arbitrator to be appointed by the Managing Director/Director in charge.
-      The arbitration shall be conducted in accordance with the provisions of the Arbitration
-      and Conciliation Act 1996, as amended from time to time. Arbitration shall be held at
-      ____________. The arbitration proceedings shall be conducted and the award shall be
-      rendered in the English language. The arbitrator will be required to make the award
-      within two (2) months of entering upon the reference unless the time is extended for
-      justifiable reasons. The award rendered by the arbitrator shall be final, conclusive
-      and binding on all parties to this Agreement and shall be subject to enforcement in any
-      court of competent jurisdiction at ________. The cost of arbitration, including
-      attorney's fees and expenses of the arbitrator, shall be as per the award.
+        <b>21.</b> You shall be governed by the Rules and Regulations, Standing Orders of the
+        company and orders and instructions issued by the management from time to time. These terms
+        and conditions of this appointment letter supersede any prior oral or written understanding
+        regarding the terms and conditions of employment with the company.
     </div>
-  </div>
 
-  <div class="appt-clause">
-    Notwithstanding anything to the contrary, this appointment will be treated as having been
-    concluded at <b>Noida, U.P.</b>, for all purposes.
-  </div>
+    <div class="appt-clause">
+        <b>22.</b> Unapproved absences shall be classified as "Leave Without Pay" and shall be
+        deducted from the monthly compensation. For the purposes of this policy, "unapproved
+        absences" are defined as those for which prior approval has not been obtained at least
+        three (3) days in advance, in the case of planned leave and non-emergent circumstances.
+    </div>
 
-  <div class="appt-clause">
-    Please sign and return the duplicate copy of this letter of appointment along with a
-    self-attested copy of your last degree evidence's class marks sheet and your Professional
-    Degree Certificate. This is in token of your having agreed and accepted the above terms
-    and conditions.
-  </div>
+    <div class="appt-clause">
+        <b>23.</b> You shall not resort to a strike or adopt go-slow tactics without giving prior
+        proper and requisite notice to the management. In the event of you resorting to slow
+        tactics, your wages shall be liable to be deducted to the extent of the shortage in normal
+        work, besides rendering you liable for disciplinary action under the law.
+    </div>
 
-  <div class="appt-clause">
-    We welcome you to this organization and trust we will have a long and mutually beneficial association.
-  </div>
+    <div class="appt-clause">
+        <b>24.</b> You will not refuse any letters/communication delivered to you by hand or by
+        Registered post. Refusal to accept the same shall constitute gross misconduct. Further, in
+        case of your refusal to accept any communication, a copy of the same shall be displayed on
+        the Notice Board of the company, and it shall be deemed to have been served to you in
+        person.
+    </div>
 
-  <div class="appt-clause">
-    Hope that this will be the beginning of a long and successful career with us.
-  </div>
+    <div class="appt-clause">
+        <b>25.</b> You will be a whole-time employee of the company and during your employment you
+        will not engage yourself in any other work or occupation, directly or indirectly, part-time
+        or full-time, honorary or otherwise. You will also not divulge/disclose or communicate to
+        any person any information concerning the affairs of the company or its clients of which
+        you may become possessed during the period of your employment.
+    </div>
+
+    <div class="appt-clause">
+        <b>26.</b> You will keep the management informed in writing of any changes in your
+        residential address; otherwise all communications intended to be served on you shall be
+        sent to the last address given by you and shall be deemed to have been delivered to you.
+        Responsibility for non-receipt of the same will be yours.
+    </div>
+
+    <div class="no-break">
+        <div class="appt-section-heading">ASSET POLICY</div>
+        <div class="appt-clause">
+            <b>27.</b> That after completion of the termination process, it is mandated that all
+            company assets, demo kits, or any other company property in your custody must be duly
+            handed over. In the event of non-compliance, management reserves the right to initiate
+            recovery proceedings against you.
+        </div>
+    </div>
+
+    <div class="appt-clause">
+        <b>28.</b> You shall be responsible for the safekeeping and returning in good order of all
+        the company properties which may be in your possession, custody, care or charge. The
+        management shall have the right to deduct the money value of such things/any advances made
+        to you from your salary/dues and take such other action as it deems fit, in the event of
+        your failure to account for such properties/advances whether during or after the course of
+        service.
+    </div>
+
+    <div class="no-break">
+        <div class="appt-section-heading">POSH POLICY</div>
+        <div class="appt-clause">
+            <b>29.</b> The Company is committed to providing a safe and respectful work environment
+            for all employees, free from sexual harassment and discrimination. As part of this
+            commitment, the company strictly adheres to the provisions of the Sexual Harassment of
+            Women at Workplace Act. For more details, please refer to the company's detailed POSH
+            policy document, available in the employee handbook and on the company intranet.
+        </div>
+    </div>
+
+    <div class="no-break">
+        <div class="appt-section-heading">RETIREMENT</div>
+        <div class="appt-clause">
+            <b>30.</b> You will retire from the service of the company on your attaining the age
+            of 58 years.
+        </div>
+    </div>
+
+    <div class="no-break">
+        <div class="appt-section-heading">DISPUTE SETTLEMENT</div>
+        <div class="appt-clause">
+            <b>31.</b> All disputes arising in connection with this Appointment Letter shall be
+            settled, if possible, by amicable negotiation of the parties. If the matter is not
+            resolved by amicable negotiations within twenty (20) business days or such later date
+            as may be unanimously agreed upon, then the dispute shall be submitted to arbitration
+            before the sole arbitrator to be appointed by the Managing Director/Director in charge.
+            The arbitration shall be conducted in accordance with the provisions of the Arbitration
+            and Conciliation Act 1996, as amended from time to time. Arbitration shall be held at
+            ____________. The arbitration proceedings shall be conducted and the award shall be
+            rendered in the English language. The arbitrator will be required to make the award
+            within two (2) months of entering upon the reference unless the time is extended for
+            justifiable reasons. The award rendered by the arbitrator shall be final, conclusive
+            and binding on all parties to this Agreement and shall be subject to enforcement in any
+            court of competent jurisdiction at ________. The cost of arbitration, including
+            attorney's fees and expenses of the arbitrator, shall be as per the award.
+        </div>
+    </div>
+
+    <div class="appt-clause">
+        Notwithstanding anything to the contrary, this appointment will be treated as having been
+        concluded at <b>Noida, U.P.</b>, for all purposes.
+    </div>
+
+    <div class="appt-clause">
+        Please sign and return the duplicate copy of this letter of appointment along with a
+        self-attested copy of your last degree evidence's class marks sheet and your Professional
+        Degree Certificate. This is in token of your having agreed and accepted the above terms
+        and conditions.
+    </div>
+
+    <div class="appt-clause">
+        We welcome you to this organization and trust we will have a long and mutually beneficial
+        association.
+    </div>
+
+    <div class="appt-clause">
+        Hope that this will be the beginning of a long and successful career with us.
+    </div>
 
 </div>
 
-<!-- ═══════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════
      PAGE 6 — Signatures + Declaration
-     ═══════════════════════════════════════════ -->
+     ═══════════════════════════════════════════════════════ -->
 <div class="appt-page appt-page-n appt-new-page">
 
-  <div class="no-break" style="display:flex; justify-content:space-between; margin-top:40px; margin-bottom:50px;">
-    <div>
-      Authorized Signatory<br><br>
-      <b>Director Name</b><br>
-      Director<br>
-      <b>TAKKAR POLYCHEM PVT. LTD.</b>
+    <div class="no-break" style="
+        display:flex;
+        justify-content:space-between;
+        margin-top:40px;
+        margin-bottom:50px;
+    ">
+        <div>
+            Authorized Signatory<br><br>
+            <b>${d.reportingTo}</b><br>
+            Director<br>
+            <b>TAKKAR POLYCHEM PVT. LTD.</b>
+        </div>
+        <div>
+            Signature of Employee<br><br>
+            Accepted: __________
+        </div>
     </div>
-    <div>
-      Signature of Employee<br><br>
-      Accepted: __________
-    </div>
-  </div>
 
-  <div class="no-break" style="border-top:1px solid #ccc; padding-top:18px;">
-    <div style="font-weight:bold; margin-bottom:10px;">DECLARATION</div>
-    <div class="appt-clause" style="margin-bottom:40px;">
-      I have carefully read and understood the above terms and conditions contained in this
-      Appointment Letter and also conditions of service and service rules of the Company.
-      The above terms and conditions of service and service rules have also been read out and
-      explained to me and I confirm having accepted the appointment on the above terms and
-      conditions without any reservations and have received the original Copy of the
-      appointment letter.
+    <div class="no-break" style="border-top:1px solid #ccc; padding-top:18px;">
+        <div style="font-weight:bold; margin-bottom:10px;">DECLARATION</div>
+        <div class="appt-clause" style="margin-bottom:40px;">
+            I have carefully read and understood the above terms and conditions contained in this
+            Appointment Letter and also conditions of service and service rules of the Company.
+            The above terms and conditions of service and service rules have also been read out and
+            explained to me and I confirm having accepted the appointment on the above terms and
+            conditions without any reservations and have received the original Copy of the
+            appointment letter.
+        </div>
+        <div style="margin-bottom:18px;">
+            Signature ....................................................
+        </div>
+        <div>
+            Date ..........................................................
+        </div>
     </div>
-    <div style="margin-bottom:18px;">Signature ....................................................</div>
-    <div>Date ..........................................................</div>
-  </div>
 
 </div>
 
-<!-- ═══════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════
      PAGE 7 — Annexure B
-     ═══════════════════════════════════════════ -->
+     ═══════════════════════════════════════════════════════ -->
 <div class="appt-page appt-page-n appt-new-page">
 
-  <div style="text-align:center; font-weight:bold; text-decoration:underline; margin-bottom:14px; font-size:12pt;">
-    ANNEXURE 'B'
-  </div>
+    <div style="
+        text-align:center;
+        font-weight:bold;
+        text-decoration:underline;
+        margin-bottom:14px;
+        font-size:12pt;
+    ">
+        ANNEXURE 'B'
+    </div>
 
-  <div class="appt-clause">
-    As part of the MIS (Management Information Systems) Team at TAKKAR POLYCHEM PVT. LTD.,
-    your roles and responsibilities shall include, but not be limited to:
-  </div>
+    <div class="appt-clause">
+        As part of the MIS (Management Information Systems) Team at TAKKAR POLYCHEM PVT. LTD.,
+        your roles and responsibilities shall include, but not be limited to:
+    </div>
 
-  <div class="appt-clause no-break">
-    <b>1. Data Management and Reporting</b><br>
-    Collecting, organizing, and maintaining data from various departments including Sales,
-    Production, Dispatch, CRM, and Accounts to generate daily, weekly, and monthly MIS reports
-    for internal stakeholders and management.
-  </div>
+    <div class="appt-clause no-break">
+        <b>1. Data Management and Reporting</b><br>
+        Collecting, organizing, and maintaining data from various departments including Sales,
+        Production, Dispatch, CRM, and Accounts to generate daily, weekly, and monthly MIS reports
+        for internal stakeholders and management.
+    </div>
 
-  <div class="appt-clause no-break">
-    <b>2. Dashboard Creation and Maintenance</b><br>
-    Designing and updating real-time dashboards using Google Sheets, Excel, or other MIS tools
-    to provide clear visibility into key operational metrics (e.g., production flow, lead
-    status, dispatch tracking, TAT).
-  </div>
+    <div class="appt-clause no-break">
+        <b>2. Dashboard Creation and Maintenance</b><br>
+        Designing and updating real-time dashboards using Google Sheets, Excel, or other MIS tools
+        to provide clear visibility into key operational metrics (e.g., production flow, lead
+        status, dispatch tracking, TAT).
+    </div>
 
-  <div class="appt-clause no-break">
-    <b>3. Automation of Reports and Workflows</b><br>
-    Automating repetitive data tasks through formulas, macros, scripts, or integrations to
-    increase accuracy and reduce manual efforts.
-  </div>
+    <div class="appt-clause no-break">
+        <b>3. Automation of Reports and Workflows</b><br>
+        Automating repetitive data tasks through formulas, macros, scripts, or integrations to
+        increase accuracy and reduce manual efforts.
+    </div>
 
-  <div class="appt-clause no-break">
-    <b>4. Master Data Maintenance</b><br>
-    Creating and managing master databases such as customer master, product master, rate master,
-    and inventory master to ensure accuracy across systems.
-  </div>
+    <div class="appt-clause no-break">
+        <b>4. Master Data Maintenance</b><br>
+        Creating and managing master databases such as customer master, product master, rate master,
+        and inventory master to ensure accuracy across systems.
+    </div>
 
-  <div class="appt-clause no-break">
-    <b>5. Error Checking and Data Accuracy</b><br>
-    Regularly verifying reports for data accuracy, identifying discrepancies or inconsistencies,
-    and coordinating with relevant teams to ensure clean and consistent data flow.
-  </div>
+    <div class="appt-clause no-break">
+        <b>5. Error Checking and Data Accuracy</b><br>
+        Regularly verifying reports for data accuracy, identifying discrepancies or inconsistencies,
+        and coordinating with relevant teams to ensure clean and consistent data flow.
+    </div>
 
-  <div class="appt-clause no-break">
-    <b>6. Support for Departmental Analysis</b><br>
-    Assisting Sales, Production, Accounts, and other departments with custom data reports and
-    insights needed for business reviews, forecasting, budgeting, or audits.
-  </div>
+    <div class="appt-clause no-break">
+        <b>6. Support for Departmental Analysis</b><br>
+        Assisting Sales, Production, Accounts, and other departments with custom data reports and
+        insights needed for business reviews, forecasting, budgeting, or audits.
+    </div>
 
-  <div class="appt-clause no-break">
-    <b>7. Compliance and Documentation</b><br>
-    Maintaining version control of all reports, following company data privacy and backup
-    protocols, and ensuring that MIS practices comply with internal SOPs and audit requirements.
-  </div>
+    <div class="appt-clause no-break">
+        <b>7. Compliance and Documentation</b><br>
+        Maintaining version control of all reports, following company data privacy and backup
+        protocols, and ensuring that MIS practices comply with internal SOPs and audit requirements.
+    </div>
 
-  <div class="appt-clause no-break">
-    <b>8. Process Mapping and Efficiency Monitoring</b><br>
-    Mapping business processes and highlighting areas for improvement or optimization based on
-    data trends, performance KPIs, and lead time analysis.
-  </div>
+    <div class="appt-clause no-break">
+        <b>8. Process Mapping and Efficiency Monitoring</b><br>
+        Mapping business processes and highlighting areas for improvement or optimization based on
+        data trends, performance KPIs, and lead time analysis.
+    </div>
 
-  <div class="appt-clause no-break">
-    <b>9. Interdepartmental Coordination</b><br>
-    Acting as a data bridge between departments, ensuring that every team has access to
-    accurate and up-to-date information required for decision-making.
-  </div>
+    <div class="appt-clause no-break">
+        <b>9. Interdepartmental Coordination</b><br>
+        Acting as a data bridge between departments, ensuring that every team has access to
+        accurate and up-to-date information required for decision-making.
+    </div>
 
-  <div class="appt-clause no-break">
-    <b>10. Training and Support</b><br>
-    Providing training to internal team members on data entry best practices, dashboard usage,
-    or report interpretation to improve data literacy across the company.
-  </div>
+    <div class="appt-clause no-break">
+        <b>10. Training and Support</b><br>
+        Providing training to internal team members on data entry best practices, dashboard usage,
+        or report interpretation to improve data literacy across the company.
+    </div>
 
 </div>
 
-</div><!-- end .appointment-letter -->
-</body>
-</html>
+</div>
+
+`;
+
+}
         async function makePDF(html, filename) {
             try {
                 const container = document.getElementById('letterContent');
