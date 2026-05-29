@@ -517,7 +517,7 @@ We look forward to having you on our team.
 
     `;
 }
-                                   function createAppointmentLetter(d) {
+function createAppointmentLetter(d) {
 
 // Detect gender from salutation or name field if available
 // We'll use d.gender if provided, otherwise default logic
@@ -550,9 +550,11 @@ return `
     }
 
     .appt-page {
-        padding: 32px 48px;
-        box-sizing: border-box;
-    }
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+}
 
     /* Every paragraph/clause must never break mid-line */
     .appt-clause {
@@ -717,6 +719,8 @@ return `
         conduct, discipline, and policy matters.
     </div>
 
+    <div class="appt-page appt-new-page">
+
     <div class="appt-clause">
         <b>8.</b> In the event of your becoming unfit for performance of your normal duties as a
         consequence of ill health, accident etc., you are liable to be discharged from services by
@@ -769,6 +773,10 @@ return `
      PAGE 3  —  Salary · Secrecy · General Rules 15-19
      ═══════════════════════════════════════ -->
 <div class="appt-page appt-new-page">
+<div class="appt-page appt-new-page">
+
+<div class="appt-page appt-new-page">
+
 
     <div class="no-break">
         <div class="appt-section-heading">SALARY AND EMOLUMENTS</div>
