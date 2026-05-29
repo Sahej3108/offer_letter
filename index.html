@@ -174,7 +174,11 @@
             right: 0.5in;
             top: 1.8in;
         }
-        
+        .offer-body{
+    margin-bottom:18px;
+    text-align:justify;
+    font-size:14px;
+}
         .offer-subject {
             font-weight: bold;
             text-decoration: underline;
@@ -432,63 +436,53 @@
                 Dear ${d.name.split(' ')[0]},
             </div>
 
-            <div style="
-                margin-bottom:18px;
-                text-align:justify;
-                font-size:14px;
-            ">
-                We are delighted to offer you the opportunity for the position of 
-                <b>${d.position}</b> with our company 
-                <b>M/S Takkar Polychem Pvt Ltd</b>, 
-                Plot No 19, Ecotech XII, Greater Noida. 
-                This is a full-time role and you will be reporting to 
-                <b>${d.reportingTo}</b>.
-            </div>
+            <div class="offer-body">
+We are pleased to offer you the position of <b>${d.position}</b> at
+<b>Takkar Polychem Pvt. Ltd.</b>, located at Plot No. 19, Ecotech XII,
+Greater Noida. This is a full-time role and you will report to
+<b>${d.reportingTo}</b>.
+</div>
 
-            <div style="
-                margin-bottom:18px;
-                text-align:justify;
-                font-size:14px;
-            ">
-                Your expected starting date is
-<b>${formatDate(d.joiningDate)}</b>.
-You will be asked to sign a confidentiality and non-disclosure agreement at the beginning of your employment.
-            </div>
+<div class="offer-body">
+Takkar Polychem Pvt. Ltd. is a leading manufacturer of specialized compounds
+serving the wire & cable and OEM industries. Your role will encompass
+responsibilities aligned with the position of <b>${d.position}</b>,
+including but not limited to coordination, reporting, documentation,
+process monitoring, business support and assisting in day-to-day operations.
+</div>
 
-            <div style="
-                margin-bottom:18px;
-                text-align:justify;
-                font-size:14px;
-            ">
-                You will be required to maintain confidentiality regarding company operations, 
-                client information, and internal processes during and after your employment.
-            </div>
+<div class="offer-body">
+As a dynamic organization, your scope of work will not be limited to predefined
+tasks and is expected to evolve continuously based on business requirements,
+your performance and your ability to take ownership of new initiatives.
+</div>
 
-            <div style="
-                margin-bottom:18px;
-                text-align:justify;
-                font-size:14px;
-            ">
-                We hope to offer you a challenging and rewarding career with opportunities 
-                for growth and professional development.
-            </div>
+<div class="offer-body">
+Your performance will be assessed through structured reporting systems designed
+to track deliverables, efficiency, quality of work and overall contribution.
+We encourage you to consistently maintain high standards of professionalism,
+accuracy and accountability.
+</div>
 
-            <div style="
-                margin-bottom:18px;
-                text-align:justify;
-                font-size:14px;
-            ">
-                Please sign and return the duplicate copy of this letter as an acceptance 
-                of our offer for the position of <b>${d.position}</b>.
-            </div>
+<div class="offer-body">
+Your expected starting date is <b>${formatDate(d.joiningDate)}</b>.
+You will be asked to sign a confidentiality and non-disclosure agreement
+at the beginning of your employment.
+</div>
 
-            <div style="
-                margin-bottom:18px;
-                text-align:justify;
-                font-size:14px;
-            ">
-                We are all looking forward to your joining our team.
-            </div>
+<div class="offer-body">
+We hope to offer you a challenging and rewarding career with a high level
+of job satisfaction and opportunities for career development.
+</div>
+
+<div class="offer-body">
+Please sign the duplicate copy of this letter as an acceptance of our offer
+for the position of <b>${d.position}</b>.
+</div>
+
+<div class="offer-body">
+We look forward to having you on our team.
+</div>
 
             <div style="
                 margin-top:55px;
@@ -516,14 +510,7 @@ You will be asked to sign a confidentiality and non-disclosure agreement at the 
     Best Regards,
 </div>
 
-<div style="margin-top:15px;">
-    For Takkar Polychem Pvt Ltd.
-</div>
 
-<div style="margin-top:40px;">
-    <b>${d.reportingTo}</b><br>
-    (Director)
-</div>
     `;
 }
        function createAppointmentLetter(d) {
