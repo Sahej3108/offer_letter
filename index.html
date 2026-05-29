@@ -548,7 +548,7 @@ return `
         width: 100%;
         max-width: 210mm;
         min-height: 297mm;
-        padding: 2.5mm 15mm 15mm 15mm;
+        padding: 0.5mm 15mm 15mm 15mm;
         margin: 0 auto 16px auto;
         background: #fff;
         position: relative;
@@ -558,7 +558,7 @@ return `
     }
 
     .appt-page-n {
-        padding: 12.5mm 15mm 15mm 15mm;
+        padding: 10.5mm 15mm 15mm 15mm;
     }
 
     .appt-page > * {
@@ -570,11 +570,11 @@ return `
 
         @page {
             size: A4;
-            margin: 12.5mm 15mm 15mm 15mm;
+            margin: 10.5mm 15mm 15mm 15mm;
         }
 
         @page :first {
-            margin-top: 2.5mm;
+            margin-top: 0.5mm;
         }
 
         .appointment-letter {
@@ -1036,6 +1036,13 @@ return `
         </div>
     </div>
 
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 7 — Closing + Signatures + Declaration
+     ═══════════════════════════════════════════════════════ -->
+<div class="appt-page appt-page-n appt-new-page">
+
     <div class="appt-clause">
         Notwithstanding anything to the contrary, this appointment will be treated as having been
         concluded at <b>Noida, U.P.</b>, for all purposes.
@@ -1056,13 +1063,6 @@ return `
     <div class="appt-clause">
         Hope that this will be the beginning of a long and successful career with us.
     </div>
-
-</div>
-
-<!-- ═══════════════════════════════════════════════════════
-     PAGE 7 — Signatures + Declaration
-     ═══════════════════════════════════════════════════════ -->
-<div class="appt-page appt-page-n appt-new-page">
 
     <div class="no-break" style="
         display:flex;
