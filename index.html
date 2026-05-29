@@ -532,30 +532,41 @@ return `
 <div class="appointment-letter">
 
 <style>
+    * { box-sizing: border-box; }
+
     .appointment-letter {
         font-family: Arial, sans-serif;
         font-size: 10pt;
         line-height: 1.55;
         color: #000;
+        width: 100%;
+        max-width: 210mm;
+        margin: 0 auto;
     }
 
     .appt-page {
-        width: 210mm;
+        width: 100%;
+        max-width: 210mm;
         min-height: 297mm;
-        box-sizing: border-box;
         padding: 2.5mm 15mm 15mm 15mm;
         margin: 0 auto 16px auto;
         background: #fff;
         position: relative;
         overflow: hidden;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .appt-page-n {
         padding: 12.5mm 15mm 15mm 15mm;
     }
 
+    .appt-page > * {
+        max-width: 100%;
+    }
+
     @media print {
-        body { background: #fff; }
+        body { background: #fff; margin: 0; padding: 0; }
 
         @page {
             size: A4;
@@ -566,8 +577,13 @@ return `
             margin-top: 2.5mm;
         }
 
+        .appointment-letter {
+            max-width: 100%;
+        }
+
         .appt-page {
             width: 100%;
+            max-width: 100%;
             min-height: auto;
             padding: 0 !important;
             margin: 0 !important;
@@ -587,6 +603,8 @@ return `
         break-inside: avoid;
         orphans: 3;
         widows: 3;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .appt-section-heading {
@@ -604,6 +622,7 @@ return `
 
     .appt-header-image img {
         width: 100%;
+        max-width: 100%;
         height: auto;
         display: block;
         margin-bottom: 10px;
