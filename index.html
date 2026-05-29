@@ -335,9 +335,14 @@
         const { jsPDF } = window.jspdf;
 
         function formatDate(dateString) {
-            const options = { day: '2-digit', month: 'short', year: 'numeric' };
-            return new Date(dateString + 'T00:00:00').toLocaleDateString('en-US', options);
-        }
+    const date = new Date(dateString);
+
+    return date.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+    });
+}
 
         function getData() {
             return {
@@ -384,7 +389,7 @@
 
         <div style="margin-top:10px;">
 
-            <div style="margin-bottom:25px;">
+            <div style="margin-bottom:10px;">
                 <div style="font-weight:bold;">To,</div>
 
                 <div style="margin-top:8px;font-weight:bold;">
@@ -410,7 +415,7 @@
                 margin-bottom:25px;
                 text-decoration:underline;
             ">
-                Subject: Offer Letter for the post of ${d.position}
+                Subject: Offer for the Role of ${d.position}
             </div>
 
             <div style="
@@ -438,10 +443,9 @@
                 text-align:justify;
                 font-size:14px;
             ">
-                Your expected starting date is 
-                <b>${formatDate(d.joiningDate)}</b>. 
-                Your monthly salary will be 
-                <b>₹${d.salary}</b>.
+                Your expected starting date is
+<b>${formatDate(d.joiningDate)}</b>.
+You will be asked to sign a confidentiality and non-disclosure agreement at the beginning of your employment.
             </div>
 
             <div style="
@@ -501,6 +505,18 @@
         </div>
 
     </div>
+    <div style="margin-top:50px;">
+    Best Regards,
+</div>
+
+<div style="margin-top:15px;">
+    For Takkar Polychem Pvt Ltd.
+</div>
+
+<div style="margin-top:40px;">
+    <b>${d.reportingTo}</b><br>
+    (Director)
+</div>
     `;
 }
        function createAppointmentLetter(d) {
