@@ -145,7 +145,7 @@
         .offer-header-image img {
             width: 100%;
             height: auto;
-            max-height: 0.8in;
+            max-height: 2in;
         }
 
         .offer-body-wrapper {
@@ -389,31 +389,38 @@
 
         <div style="margin-top:10px;">
 
-            <div style="margin-bottom:10px;">
-                <div style="font-weight:bold;">To,</div>
-
-                <div style="margin-top:8px;font-weight:bold;">
-                    Mr ${d.name},
-                </div>
-
-                <div style="margin-top:5px;white-space:pre-line;">
-                    ${d.address}
-                </div>
-            </div>
-
             <div style="
-                text-align:right;
-                margin-bottom:25px;
-                font-weight:bold;
-            ">
-                Dated: ${formatDate(d.offerDate)}
-            </div>
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:15px;
+">
+
+    <div>
+        <div style="font-weight:bold;">To,</div>
+
+        <div style="margin-top:8px;font-weight:bold;">
+            Mr ${d.name},
+        </div>
+
+        <div style="margin-top:5px;white-space:pre-line;">
+            ${d.address}
+        </div>
+    </div>
+
+    <div style="
+        font-weight:bold;
+        text-align:right;
+    ">
+        Date: ${formatDate(d.offerDate)}
+    </div>
+
+</div>
 
             <div style="
                 font-size:15px;
                 font-weight:bold;
                 margin-bottom:25px;
-                text-decoration:underline;
             ">
                 Subject: Offer for the Role of ${d.position}
             </div>
@@ -435,7 +442,7 @@
                 <b>M/S Takkar Polychem Pvt Ltd</b>, 
                 Plot No 19, Ecotech XII, Greater Noida. 
                 This is a full-time role and you will be reporting to 
-                <b>Mr. ${d.reportingTo}</b>.
+                <b>${d.reportingTo}</b>.
             </div>
 
             <div style="
