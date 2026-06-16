@@ -1209,6 +1209,7 @@ return `
                 const pageHeight = pdf.internal.pageSize.getHeight();
                 const imgWidth = pageWidth;
                 const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                const totalPages = Math.ceil(imgHeight / pageHeight);
 
                 let position = 0;
                 let heightLeft = imgHeight;
@@ -1216,12 +1217,18 @@ return `
                 pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
 
-                while (heightLeft > pageHeight) {
-                    position = heightLeft - imgHeight;
-                    pdf.addPage();
-                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                    heightLeft -= pageHeight;
-                }
+                while (heightLeft >= pageHeight) {
+    position = heightLeft - imgHeight;
+
+    if (heightLeft - pageHeight <= 1) {
+        break;
+    }
+
+    pdf.addPage();
+    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+
+    heightLeft -= pageHeight;
+}
 
                 pdf.save(filename + '.pdf');
                 container.classList.add('hidden');
