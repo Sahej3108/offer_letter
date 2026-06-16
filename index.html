@@ -510,9 +510,7 @@ We look forward to having you on our team.
         </div>
 
     </div>
-    <div style="margin-top:50px;">
-    Best Regards,
-</div>
+    
 
 
     `;
@@ -1218,7 +1216,7 @@ return `
                 pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
 
-                while (heightLeft > 0) {
+                while (heightLeft > pageHeight) {
                     position = heightLeft - imgHeight;
                     pdf.addPage();
                     pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
