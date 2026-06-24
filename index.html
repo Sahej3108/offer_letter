@@ -306,6 +306,14 @@
                             <label>Date of Joining *</label>
                             <input type="date" id="joiningDate" required>
                         </div>
+                        <div class="form-group">
+    <label for="director">Director</label>
+    <select id="director" name="director" class="form-control">
+        <option value="">Select Director</option>
+        <option value="Mr. Deepak Takkar">Yes</option>
+        <option value="Mr. Amit Takkar">No</option>
+    </select>
+</div>
                     </div>
                 </div>
                 <div class="form-section">
@@ -501,7 +509,7 @@ We look forward to having you on our team.
                 </div>
 
                 <div style="font-weight:bold;">
-                    <div> Deepak Takkar</div>
+                    <div> ${director}</div>
                     <div>(Director)</div>
                 </div>
 
